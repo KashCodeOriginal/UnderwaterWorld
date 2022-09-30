@@ -1,12 +1,12 @@
 using UnityEngine;
+using Zenject;
 
-public class BootstrapState : State<GameInstance>
+public class BootstrapState : State<GameInstance>, IInitializable
 {
     public BootstrapState(GameInstance context) : base(context) { }
 
-    public override void Enter()
+    public void Initialize()
     {
-        Debug.Log("1");
         Context.StateMachine.SwitchState<LoadingState>();
     }
 }
