@@ -2,6 +2,8 @@ using UnityEngine;
 
 public interface IFoodFabric : IFoodInfo
 {
-    GameObject CreateObject(Vector3 position);
+    public GameObject CreateObject(Vector3 position, params FoodDecorator[] decorators);
+    public void DestroyInstance();
+    public void DestroyAllInstances();
 }
 

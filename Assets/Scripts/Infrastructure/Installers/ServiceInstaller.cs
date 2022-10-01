@@ -9,6 +9,6 @@ public class ServiceInstaller : MonoInstaller
 
     private void BindSceneLoader()
     {
-        Container.Bind<ISceneLoader>().To<SceneLoader>().AsSingle();
+        Container.BindInterfacesTo<SceneLoader>().AsSingle();
     }
 }

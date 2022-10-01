@@ -1,18 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class FoodColorDecorator : MonoBehaviour
+[CreateAssetMenu(fileName = "FoodColorDecorator", menuName = "Decorators/FoodDecorators/FoodColorDecorator")]
+public class FoodColorDecorator : FoodDecorator
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private Color _color;
+    [SerializeField] private float _recoveryValue;
+    
+    public override void Decorate(ref FoodStats sourceStats)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        sourceStats.Color = _color;
+        sourceStats.RecoveryValue += _recoveryValue;
     }
 }
