@@ -1,17 +1,19 @@
-using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.AddressableAssets;
 
 public class LoadingState : State<GameInstance>
 {
     public LoadingState(GameInstance context, ISceneLoader sceneLoader) : base(context)
     {
-        _sceneLoader = sceneLoader;
+        
     }
-
-    private readonly ISceneLoader _sceneLoader;
-
-    public override void Enter()
+    
+    public async override void Enter()
     {
-        _sceneLoader.LoadScene(GameConstants.GAMEPLAY_LEVEL_NAME, OnLoadingComplete);
+        var asyncOperationHandle = Addressables.LoadSceneAsync(GameConstants.GAMEPLAY_LEVEL_NAME, LoadSceneMode.Single);
+        await asyncOperationHandle.Task;
+        OnLoadingComplete();
+        //_sceneLoader.LoadScene(GameConstants.GAMEPLAY_LEVEL_NAME, OnLoadingComplete);
     }
 
     private void OnLoadingComplete()
