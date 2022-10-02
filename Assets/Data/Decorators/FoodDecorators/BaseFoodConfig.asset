@@ -16,3 +16,4 @@ MonoBehaviour:
   _color: {r: 1, g: 1, b: 1, a: 1}
   _size: 5
   _recoveryValue: 20
+  _prefab: {fileID: 2502481529657712774, guid: e322576d5384f1f4895a4439c17e7451, type: 3}

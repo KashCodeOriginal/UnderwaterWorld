@@ -17,11 +17,6 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 4265158d6f97bf340801a54fe8ac77c7
   m_SerializeEntries:
-  - m_GUID: e322576d5384f1f4895a4439c17e7451
-    m_Address: BaseFood
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 587bced37310b864b8f05ffa32d3eb5b
     m_Address: MainScene
     m_ReadOnly: 0

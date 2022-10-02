@@ -3,6 +3,7 @@ using Zenject;
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.AddressableAssets;
+using Object = UnityEngine.Object;
 
 public class FoodFabric : IFoodFabric
 {
@@ -17,8 +18,8 @@ public class FoodFabric : IFoodFabric
     private readonly ISceneInfoService _sceneInfoService;
     private readonly IAssetsAddressableService _assetsAddressableService;
 
-    private List<GameObject> _instances;
-
+    private List<GameObject> _instances = new List<GameObject>();
+    
     public FoodFabric(DiContainer container, ISceneInfoService sceneInfoService, IAssetsAddressableService assetsAddressableService)
     {
         _container = container;
@@ -26,28 +27,47 @@ public class FoodFabric : IFoodFabric
         _assetsAddressableService = assetsAddressableService;
     }
 
-    public GameObject CreateObject(Vector3 position, params FoodDecorator[] decorators)
+    public async void CreateObject(Vector3 position, params FoodDecorator[] decorators)
     {
-        FoodConfig foodConfig =
-            _assetsAddressableService.GetAsset<FoodConfig>(AssetsAdresses.BASE_FOOD_CONFIG_ADDRESS);
+        FoodConfig foodConfig;
+
+        var asyncOperationHandle = Addressables.LoadAssetAsync<FoodConfig>(AssetsAdresses.BASE_FOOD_CONFIG_ADDRESS);
+
+        await asyncOperationHandle.Task;
+
+        foodConfig = asyncOperationHandle.Result;
 
         FoodStats foodStats = GetUnitStatsFromConfig(foodConfig);
 
         GameObject foodInstance = SpawnGameobject(foodConfig);
         
         DecorateStats(ref foodStats, decorators);
-
-        return new GameObject();
+        
+        SetUp(foodInstance, position, foodStats);
+        
+        _instances.Add(foodInstance);
     }
 
-    public void DestroyInstance()
+    public void DestroyInstance(GameObject instance)
     {
-        throw new NotImplementedException();
+        if (instance == null)
+        {
+            throw new NullReferenceException("There is no instance to destroy");
+        }
+        
+        Object.Destroy(instance);
+        
+        //OnInstancesListChanged?.Invoke();
     }
 
     public void DestroyAllInstances()
     {
-        throw new NotImplementedException();
+        for (int i = 0; i < _instances.Count; i++)
+        {
+            Object.Destroy(_instances[i]);
+        }
+        
+        _instances.Clear();
     }
 
     private FoodStats GetUnitStatsFromConfig(FoodConfig foodConfig)
@@ -80,10 +100,18 @@ public class FoodFabric : IFoodFabric
         }
     }
 
-    private void SetUp(GameObject foodInstance, Vector3 position)
+    private void SetUp(GameObject foodInstance, Vector3 position, FoodStats foodStats)
     {
         foodInstance.transform.position = position;
-        
-        
+
+        if (foodInstance.TryGetComponent(out Food food))
+        {
+            food.Modify(foodStats.RecoveryValue);
+        }
+
+        if (foodInstance.TryGetComponent(out MeshHandler meshHandler))
+        {
+            meshHandler.Modify(foodStats.Mesh, foodStats.Color, foodStats.Size);
+        }
     }
 }
