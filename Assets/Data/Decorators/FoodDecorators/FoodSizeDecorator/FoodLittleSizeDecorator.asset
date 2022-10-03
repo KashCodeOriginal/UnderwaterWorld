@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ca3a075e945a64468d6def08173bb44, type: 3}
   m_Name: FoodLittleSizeDecorator
   m_EditorClassIdentifier: 
-  _size: 0.1
+  _size: 3
   _recoveryValue: -3

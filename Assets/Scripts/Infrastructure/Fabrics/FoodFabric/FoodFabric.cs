@@ -3,6 +3,7 @@ using Zenject;
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.AddressableAssets;
+using UnityEngine.SceneManagement;
 using Object = UnityEngine.Object;
 
 public class FoodFabric : IFoodFabric
@@ -15,31 +16,28 @@ public class FoodFabric : IFoodFabric
     }
 
     private readonly DiContainer _container;
-    private readonly ISceneInfoService _sceneInfoService;
-    private readonly IAssetsAddressableService _assetsAddressableService;
 
     private List<GameObject> _instances = new List<GameObject>();
-    
-    public FoodFabric(DiContainer container, ISceneInfoService sceneInfoService, IAssetsAddressableService assetsAddressableService)
+
+    public FoodFabric(DiContainer container)
     {
         _container = container;
-        _sceneInfoService = sceneInfoService;
-        _assetsAddressableService = assetsAddressableService;
     }
 
     public async void CreateObject(Vector3 position, params FoodDecorator[] decorators)
     {
         FoodConfig foodConfig;
-
+        
         var asyncOperationHandle = Addressables.LoadAssetAsync<FoodConfig>(AssetsAdresses.BASE_FOOD_CONFIG_ADDRESS);
-
         await asyncOperationHandle.Task;
 
         foodConfig = asyncOperationHandle.Result;
-
+        
         FoodStats foodStats = GetUnitStatsFromConfig(foodConfig);
 
         GameObject foodInstance = SpawnGameobject(foodConfig);
+        
+        ToScene(foodInstance);
         
         DecorateStats(ref foodStats, decorators);
         
@@ -84,7 +82,7 @@ public class FoodFabric : IFoodFabric
     {
         if (foodConfig.Prefab == null)
         {
-            throw new System.NullReferenceException($"There is no prefab on {foodConfig}");
+            throw new NullReferenceException($"There is no prefab on {foodConfig}");
         }
 
         GameObject foodInstance = _container.InstantiatePrefab(foodConfig.Prefab);
@@ -113,5 +111,10 @@ public class FoodFabric : IFoodFabric
         {
             meshHandler.Modify(foodStats.Mesh, foodStats.Color, foodStats.Size);
         }
+    }
+
+    private void ToScene(GameObject target)
+    {
+        SceneManager.MoveGameObjectToScene(target, SceneManager.GetActiveScene());
     }
 }

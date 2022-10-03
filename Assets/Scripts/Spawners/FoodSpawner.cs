@@ -1,10 +1,15 @@
 using UnityEngine;
 using Zenject;
 using System;
+using Random = UnityEngine.Random;
 
 public class FoodSpawner : MonoBehaviour
 {
-    [SerializeField] private int amount;
+    [SerializeField] private int _amount;
+    
+    [SerializeField] private float _minX, _maxX, _minZ, _maxZ;
+
+    [SerializeField] private float _mapHeight;
 
     [SerializeField] private FoodMeshDecorator[] _meshDecorators = Array.Empty<FoodMeshDecorator>();
 
@@ -22,14 +27,25 @@ public class FoodSpawner : MonoBehaviour
     
     public void CreateFood()
     {
-        for (int i = 0; i < amount; i++)
+        for (int i = 0; i < _amount; i++)
         {
             if (!isActiveAndEnabled)
             {
                 return;
             }
+
+            Vector3 position = new Vector3(Random.Range(_minX, _maxX), _mapHeight, Random.Range(_minZ, _maxZ));
             
-            _foodFabric.CreateObject(new Vector3(0,0,0), _meshDecorators[UnityEngine.Random.Range(0, _meshDecorators.Length)], _colorDecorators[UnityEngine.Random.Range(0, _colorDecorators.Length)], _sizeDecorators[UnityEngine.Random.Range(0, _sizeDecorators.Length)]);
+            _foodFabric.CreateObject(position, 
+                _meshDecorators[GetRandomValue(0, _meshDecorators.Length)], 
+                _colorDecorators[GetRandomValue(0, _colorDecorators.Length)], 
+                _sizeDecorators[GetRandomValue(0, _sizeDecorators.Length)]);
         }
+    }
+
+    private int GetRandomValue(int startValue, int endValue)
+    {
+        int randomValue = Random.Range(startValue, endValue);
+        return randomValue;
     }
 }

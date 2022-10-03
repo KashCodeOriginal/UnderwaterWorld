@@ -5,6 +5,7 @@ public class ServiceInstaller : MonoInstaller
     public override void InstallBindings()
     {
         BindFoodFactory();
+        BindUIFactory();
         BindSceneLoader();
         BindAssetsAddressable();
     }
@@ -22,5 +23,10 @@ public class ServiceInstaller : MonoInstaller
     private void BindFoodFactory()
     {
         Container.BindInterfacesTo<FoodFabric>().AsSingle();
+    }
+
+    private void BindUIFactory()
+    {
+        Container.BindInterfacesTo<UIFactory>().AsSingle();
     }
 }
