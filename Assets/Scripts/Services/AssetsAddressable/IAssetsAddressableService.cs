@@ -1,6 +1,7 @@
+using System.Threading.Tasks;
 using UnityEngine;
 
 public interface IAssetsAddressableService : IService
 {
-    public T GetAsset<T>(string path) where T : Object;
+    public Task<T> GetAsset<T>(string path) where T : Object;
 }

@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _target: {fileID: 0}
-  _smooth: 20
+  _smooth: 100
   _offset: {x: 0, y: 10, z: -3.5}
 --- !u!20 &554205299567046569
 Camera:

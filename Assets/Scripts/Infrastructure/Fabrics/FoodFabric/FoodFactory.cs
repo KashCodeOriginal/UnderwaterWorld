@@ -8,6 +8,12 @@ using Object = UnityEngine.Object;
 
 public class FoodFactory : IFoodFactory
 {
+    public FoodFactory(DiContainer container, IAssetsAddressableService assetsAddressableService)
+    {
+        _container = container;
+        _assetsAddressableService = assetsAddressableService;
+    }
+
     public event Action OnInstancesListChanged;
 
     public IReadOnlyList<GameObject> Instances
@@ -16,22 +22,15 @@ public class FoodFactory : IFoodFactory
     }
 
     private readonly DiContainer _container;
+    private readonly IAssetsAddressableService _assetsAddressableService;
 
     private List<GameObject> _instances = new List<GameObject>();
-
-    public FoodFactory(DiContainer container)
-    {
-        _container = container;
-    }
 
     public async void CreateObject(Vector3 position, params FoodDecorator[] decorators)
     {
         FoodConfig foodConfig;
-        
-        var asyncOperationHandle = Addressables.LoadAssetAsync<FoodConfig>(AssetsAdresses.BASE_FOOD_CONFIG_ADDRESS);
-        await asyncOperationHandle.Task;
 
-        foodConfig = asyncOperationHandle.Result;
+        foodConfig = await _assetsAddressableService.GetAsset<FoodConfig>(GameConstants.BASE_FOOD_CONFIG);
         
         FoodStats foodStats = GetUnitStatsFromConfig(foodConfig);
 

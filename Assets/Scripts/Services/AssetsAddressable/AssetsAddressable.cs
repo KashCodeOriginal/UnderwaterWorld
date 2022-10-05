@@ -1,17 +1,14 @@
-using System;
+using System.Threading.Tasks;
 using Object = UnityEngine.Object;
 using UnityEngine.AddressableAssets;
 
 public class AssetsAddressable : IAssetsAddressableService
 {
-    public T GetAsset<T>(string path) where T : Object
+    public async Task<T> GetAsset<T>(string path) where T : Object
     {
         var asyncOperationHandle = Addressables.LoadAssetAsync<T>(path);
+        await asyncOperationHandle.Task;
 
-        if (asyncOperationHandle.Result == null)
-        {
-            throw new Exception($"File path {path} doesn't contains any object");
-        }
         return asyncOperationHandle.Result;
     }
 }

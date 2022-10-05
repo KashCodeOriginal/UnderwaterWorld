@@ -1,5 +1,6 @@
 public static class GameConstants
 {
+    public const string BASE_FOOD_CONFIG = "BaseFoodConfig";
     public const string LOADING_LEVEL_NAME = "Bootstrap";
     public const string GAMEPLAY_LEVEL_NAME = "MainScene";
     public const string START_GAME_SCREEN = "StartGameScreen";

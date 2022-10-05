@@ -1,15 +1,18 @@
-using Zenject;
 using UnityEngine;
+using Zenject;
 
 public class ObjectsInstaller : MonoInstaller
 {
+    //[SerializeField] private FloatingJoystick _floatingJoystick;
+    
     public override void InstallBindings()
     {
-        InstallPlayer();
+        
     }
 
-    private void InstallPlayer()
+    private void BindJoystick()
     {
-        Container.BindInterfacesTo<Player>().AsSingle();
+        //Container.Bind<FloatingJoystick>().From
     }
+    
 }
