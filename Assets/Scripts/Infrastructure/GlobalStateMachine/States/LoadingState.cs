@@ -1,4 +1,3 @@
-using UnityEngine;
 using UnityEngine.AddressableAssets;
 
 public class LoadingState : State<GameInstance>

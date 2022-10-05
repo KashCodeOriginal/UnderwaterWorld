@@ -5,8 +5,10 @@ public class GameInstance
         StateMachine = new StateMachine<GameInstance>(this,
             new BootstrapState(this),
             new LoadingState(this, uiFactory),
-            new SetUpState(this, uiFactory),
-            new SimulationState(this));
+            new SetUpState(this),
+            new GameStartState(this, uiFactory),
+            new GameplayState(this)
+            );
         
         StateMachine.SwitchState<BootstrapState>();
     }
