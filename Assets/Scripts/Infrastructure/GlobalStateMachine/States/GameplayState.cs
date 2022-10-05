@@ -17,7 +17,6 @@ public class GameplayState : State<GameInstance>
     private async void ShowUI()
     {
         var gameplayScreen = await _uiFactory.CreateGameplayScreen();
-        
     }
 
     private void HideUI()

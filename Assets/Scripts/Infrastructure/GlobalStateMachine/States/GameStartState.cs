@@ -30,6 +30,8 @@ public class GameStartState : State<GameInstance>
         Debug.Log(gameStartScreen.GetComponent<StartGameScreen>().gameObject);
         
         _startGameScreen.OnPlayButtonClicked += StartGame;
+        
+        Context.StateMachine.SwitchState<GameplayState>();
     }
 
     private void HideUI()
@@ -39,7 +41,6 @@ public class GameStartState : State<GameInstance>
 
     private void StartGame()
     {
-        Debug.Log("FFF");
         Context.StateMachine.SwitchState<GameplayState>();
     }
 }

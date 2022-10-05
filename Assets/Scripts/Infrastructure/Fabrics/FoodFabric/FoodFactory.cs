@@ -6,7 +6,7 @@ using UnityEngine.AddressableAssets;
 using UnityEngine.SceneManagement;
 using Object = UnityEngine.Object;
 
-public class FoodFabric : IFoodFabric
+public class FoodFactory : IFoodFactory
 {
     public event Action OnInstancesListChanged;
 
@@ -19,7 +19,7 @@ public class FoodFabric : IFoodFabric
 
     private List<GameObject> _instances = new List<GameObject>();
 
-    public FoodFabric(DiContainer container)
+    public FoodFactory(DiContainer container)
     {
         _container = container;
     }

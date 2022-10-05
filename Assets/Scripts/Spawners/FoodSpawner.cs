@@ -17,12 +17,12 @@ public class FoodSpawner : MonoBehaviour
 
     [SerializeField] private FoodSizeDecorator[] _sizeDecorators = Array.Empty<FoodSizeDecorator>();
 
-    private IFoodFabric _foodFabric;
+    private IFoodFactory _foodFactory;
 
     [Inject]
-    public void Construct(IFoodFabric foodFabric)
+    public void Construct(IFoodFactory foodFactory)
     {
-        _foodFabric = foodFabric;
+        _foodFactory = foodFactory;
     }
     
     public void CreateFood()
@@ -36,7 +36,7 @@ public class FoodSpawner : MonoBehaviour
 
             Vector3 position = new Vector3(Random.Range(_minX, _maxX), _mapHeight, Random.Range(_minZ, _maxZ));
             
-            _foodFabric.CreateObject(position, 
+            _foodFactory.CreateObject(position, 
                 _meshDecorators[GetRandomValue(0, _meshDecorators.Length)], 
                 _colorDecorators[GetRandomValue(0, _colorDecorators.Length)], 
                 _sizeDecorators[GetRandomValue(0, _sizeDecorators.Length)]);
