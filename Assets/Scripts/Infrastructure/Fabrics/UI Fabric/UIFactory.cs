@@ -1,6 +1,6 @@
-using System.Threading.Tasks;
 using Zenject;
 using UnityEngine;
+using System.Threading.Tasks;
 using UnityEngine.AddressableAssets;
 
 public class UIFactory : IUIFactory
@@ -41,7 +41,7 @@ public class UIFactory : IUIFactory
 
         StartGameScreen = _container.InstantiatePrefab(prefab);
 
-        return prefab;
+        return StartGameScreen;
     }
     
 
@@ -60,7 +60,7 @@ public class UIFactory : IUIFactory
 
         GameplayScreen = _container.InstantiatePrefab(prefab);
 
-        return prefab;
+        return GameplayScreen;
     }
 
     public void DestroyGameplayScreen()

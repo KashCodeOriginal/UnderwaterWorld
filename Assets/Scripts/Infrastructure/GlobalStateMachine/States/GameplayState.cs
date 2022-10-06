@@ -2,21 +2,37 @@ using UnityEngine;
 
 public class GameplayState : State<GameInstance>
 {
-    public GameplayState(GameInstance context, IUIFactory uiFactory) : base(context)
+    public GameplayState(GameInstance context, IUIFactory uiFactory, IAbstractFactory abstractFactory, IAssetsAddressableService assetsAddressableService) : base(context)
     {
         _uiFactory = uiFactory;
+        _abstractFactory = abstractFactory;
+        _assetsAddressableService = assetsAddressableService;
     }
 
     private readonly IUIFactory _uiFactory;
+    private readonly IAbstractFactory _abstractFactory;
+    private readonly IAssetsAddressableService _assetsAddressableService;
 
-    public override void Enter()
+    private GameObject _gameplayScreen;
+
+    public override async void Enter()
     {
         ShowUI();
+        
+        GameObject player = await _assetsAddressableService.GetAsset<GameObject>(GameConstants.PLAYER_INSTANCE);
+        GameObject camera = await _assetsAddressableService.GetAsset<GameObject>(GameConstants.CAMERA_INSTANCE);
+        
+        var playerInstance =_abstractFactory.CreateObject(player, new Vector3(0,1,0));
+        var cameraInstance = _abstractFactory.CreateObject(camera, Vector3.zero);
+        
+        playerInstance.GetComponent<PlayerInput>().SetJoystick(_gameplayScreen.GetComponentInChildren<FloatingJoystick>());
+        
+        cameraInstance.GetComponentInChildren<CameraFollowing>().SetTarget(playerInstance.transform);
     }
 
     private async void ShowUI()
     {
-        var gameplayScreen = await _uiFactory.CreateGameplayScreen();
+        _gameplayScreen = await _uiFactory.CreateGameplayScreen();
     }
 
     private void HideUI()

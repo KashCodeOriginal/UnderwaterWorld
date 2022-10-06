@@ -536,7 +536,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34e60bf8d6a27cf499e926c32a29bbdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _amount: 10
+  _amount: 100
   _minX: -50
   _maxX: 50
   _minZ: -50

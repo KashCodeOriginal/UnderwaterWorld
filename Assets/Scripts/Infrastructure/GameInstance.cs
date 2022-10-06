@@ -5,9 +5,9 @@ public class GameInstance
         StateMachine = new StateMachine<GameInstance>(this,
             new BootstrapState(this),
             new LoadingState(this, uiFactory),
-            new SetUpState(this, abstractFactory, assetsAddressableService),
+            new SetUpState(this),
             new GameStartState(this, uiFactory),
-            new GameplayState(this, uiFactory)
+            new GameplayState(this, uiFactory, abstractFactory, assetsAddressableService)
             );
         
         StateMachine.SwitchState<BootstrapState>();

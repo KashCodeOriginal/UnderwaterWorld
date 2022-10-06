@@ -7,15 +7,9 @@ public class ServiceInstaller : MonoInstaller
         BindFoodFactory();
         BindUIFactory();
         BindAbstractFactory();
-        BindSceneLoader();
         BindAssetsAddressable();
     }
-
-    private void BindSceneLoader()
-    {
-        Container.BindInterfacesTo<SceneLoader>().AsSingle();
-    }
-
+    
     private void BindAssetsAddressable()
     {
         Container.BindInterfacesTo<AssetsAddressable>().AsSingle();

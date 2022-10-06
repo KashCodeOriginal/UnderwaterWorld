@@ -26,12 +26,8 @@ public class GameStartState : State<GameInstance>
         var gameStartScreen = await _uiFactory.CreateGameStartScreen();
 
         _startGameScreen = gameStartScreen.GetComponent<StartGameScreen>();
-        
-        Debug.Log(gameStartScreen.GetComponent<StartGameScreen>().gameObject);
-        
+
         _startGameScreen.OnPlayButtonClicked += StartGame;
-        
-        Context.StateMachine.SwitchState<GameplayState>();
     }
 
     private void HideUI()
