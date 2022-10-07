@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4265673522403788057}
   - component: {fileID: 4403859440289218452}
   - component: {fileID: 8368276676982861044}
+  - component: {fileID: 7049341840791702822}
   m_Layer: 0
   m_Name: BaseFood
   m_TagString: Untagged
@@ -97,6 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89265265c2939864f9fb3b758fbbf074, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _recoveryValue: 0
 --- !u!114 &8368276676982861044
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,3 +112,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _meshFilter: {fileID: 486245415229989638}
+--- !u!64 &7049341840791702822
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2502481529657712774}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}

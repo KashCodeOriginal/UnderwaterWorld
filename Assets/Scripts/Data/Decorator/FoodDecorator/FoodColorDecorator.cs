@@ -4,7 +4,7 @@ using UnityEngine;
 public class FoodColorDecorator : FoodDecorator
 {
     [SerializeField] private Color _color;
-    [SerializeField] private float _recoveryValue;
+    [SerializeField] private int _recoveryValue;
     
     public override void Decorate(ref FoodStats sourceStats)
     {

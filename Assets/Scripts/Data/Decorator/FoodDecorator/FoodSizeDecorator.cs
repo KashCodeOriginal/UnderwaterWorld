@@ -4,7 +4,7 @@ using UnityEngine;
 public class FoodSizeDecorator : FoodDecorator
 {
     [SerializeField][Min(0.1f)] private float _size;
-    [SerializeField] private float _recoveryValue;
+    [SerializeField] private int _recoveryValue;
     
     public override void Decorate(ref FoodStats sourceStats)
     {

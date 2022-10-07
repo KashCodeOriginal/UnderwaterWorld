@@ -2,12 +2,17 @@ using UnityEngine;
 
 public class Food : MonoBehaviour, IEatable
 {
-    public float RecoveryValue => _recoveryValue;
+    public int RecoveryValue => _recoveryValue;
+    
+    [SerializeField] private int _recoveryValue;
 
-    [SerializeField] private float _recoveryValue;
-
-    public void Modify(float recoveryValue)
+    public void Modify(int recoveryValue)
     {
-        _recoveryValue = recoveryValue;
+        _recoveryValue += recoveryValue;
+    }
+    
+    public void DestroyInstance()
+    {
+        Destroy(gameObject);
     }
 }

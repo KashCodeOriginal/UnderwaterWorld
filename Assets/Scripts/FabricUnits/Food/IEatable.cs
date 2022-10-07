@@ -1,4 +1,5 @@
 public interface IEatable
 {
-    public float RecoveryValue { get; }
+    public int RecoveryValue { get; }
+    public void DestroyInstance();
 }

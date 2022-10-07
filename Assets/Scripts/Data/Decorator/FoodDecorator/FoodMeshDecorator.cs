@@ -4,7 +4,7 @@ using UnityEngine;
 public class FoodMeshDecorator : FoodDecorator
 {
     [SerializeField] private Mesh _mesh;
-    [SerializeField] private float _recoveryValue;
+    [SerializeField] private int _recoveryValue;
     
     public override void Decorate(ref FoodStats sourceStats)
     {
