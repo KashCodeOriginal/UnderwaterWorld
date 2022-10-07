@@ -2,7 +2,6 @@ using System;
 using Zenject;
 using UnityEngine;
 using System.Collections.Generic;
-using UnityEngine.AddressableAssets;
 using UnityEngine.SceneManagement;
 using Object = UnityEngine.Object;
 
@@ -34,7 +33,7 @@ public class FoodFactory : IFoodFactory
         
         FoodStats foodStats = GetUnitStatsFromConfig(foodConfig);
 
-        GameObject foodInstance = SpawnGameobject(foodConfig);
+        GameObject foodInstance = SpawnGameObject(foodConfig);
         
         ToScene(foodInstance);
         
@@ -77,7 +76,7 @@ public class FoodFactory : IFoodFactory
         );
     }
 
-    private GameObject SpawnGameobject(FoodConfig foodConfig)
+    private GameObject SpawnGameObject(FoodConfig foodConfig)
     {
         if (foodConfig.Prefab == null)
         {
@@ -106,7 +105,7 @@ public class FoodFactory : IFoodFactory
             food.Modify(foodStats.RecoveryValue);
         }
 
-        if (foodInstance.TryGetComponent(out MeshHandler meshHandler))
+        if (foodInstance.TryGetComponent(out FoodMeshHandler meshHandler))
         {
             meshHandler.Modify(foodStats.Mesh, foodStats.Color, foodStats.Size);
         }

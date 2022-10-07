@@ -10,6 +10,9 @@ public class SetUpState : State<GameInstance>
         var foodSpawner = Object.FindObjectOfType<FoodSpawner>();
         foodSpawner.CreateFood();
 
+        var enemySpawner = Object.FindObjectOfType<EnemySpawner>();
+        enemySpawner.CreateEnemy();
+
         Context.StateMachine.SwitchState<GameStartState>();
     }
 }

@@ -7,6 +7,7 @@ public class ServiceInstaller : MonoInstaller
         BindFoodFactory();
         BindUIFactory();
         BindAbstractFactory();
+        BindEnemyFactory();
         BindAssetsAddressable();
     }
     
@@ -28,5 +29,10 @@ public class ServiceInstaller : MonoInstaller
     private void BindAbstractFactory()
     {
         Container.BindInterfacesTo<AbstractFactory>().AsSingle();
+    }
+
+    private void BindEnemyFactory()
+    {
+        Container.BindInterfacesTo<EnemyFactory>().AsSingle();
     }
 }

@@ -1,6 +1,8 @@
+using System;
+using Zenject;
 using UnityEngine;
 using System.Collections.Generic;
-using Zenject;
+using Object = UnityEngine.Object;
 
 public class AbstractFactory : IAbstractFactory
 {
@@ -28,6 +30,11 @@ public class AbstractFactory : IAbstractFactory
 
     public void DestroyObject(GameObject instance)
     {
+        if (instance == null)
+        {
+            throw new NullReferenceException("There is no instance to destroy");
+        }
+        
         if (_instances.Contains(instance))
         {
             Object.Destroy(instance);
@@ -35,7 +42,7 @@ public class AbstractFactory : IAbstractFactory
         }
         else
         {
-            throw new System.NullReferenceException($"Instance {instance} can't be destroyed, cause there is no {instance} on Abstract Factory Instances");
+            throw new NullReferenceException($"Instance {instance} can't be destroyed, cause there is no {instance} on Abstract Factory Instances");
         }
     }
 }

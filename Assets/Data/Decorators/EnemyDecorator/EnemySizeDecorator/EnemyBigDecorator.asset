@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ca3a075e945a64468d6def08173bb44, type: 3}
-  m_Name: FoodMediumSizeDecorator
+  m_Script: {fileID: 11500000, guid: 98484253719114e40a44034890728a69, type: 3}
+  m_Name: EnemyBigDecorator
   m_EditorClassIdentifier: 
-  _size: 1.4
-  _recoveryValue: 5
+  _health: 5
+  _damage: 4
+  _speed: 5
+  _size: 2.5
