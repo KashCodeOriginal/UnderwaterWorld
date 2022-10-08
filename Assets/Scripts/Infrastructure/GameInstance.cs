@@ -4,7 +4,7 @@ public class GameInstance
     {
         StateMachine = new StateMachine<GameInstance>(this,
             new BootstrapState(this),
-            new LoadingState(this, uiFactory),
+            new SetUpLoadingState(this, uiFactory),
             new SetUpState(this),
             new GameStartState(this, uiFactory),
             new GameplayState(this, uiFactory, abstractFactory, assetsAddressableService)

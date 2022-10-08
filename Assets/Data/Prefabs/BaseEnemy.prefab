@@ -12,8 +12,10 @@ GameObject:
   - component: {fileID: 486245415229989638}
   - component: {fileID: 4265673522403788057}
   - component: {fileID: 4171711284543173983}
+  - component: {fileID: 1244065697521845159}
   - component: {fileID: 4687782662732044543}
   - component: {fileID: 6072955837009881194}
+  - component: {fileID: 6045724276937600956}
   m_Layer: 0
   m_Name: BaseEnemy
   m_TagString: Untagged
@@ -99,6 +101,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: 0
+--- !u!114 &1244065697521845159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2502481529657712774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1139769be8accec4fb56089efb8edcd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hungerPoints: 0
 --- !u!114 &4687782662732044543
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -122,5 +137,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 901d124a95a71104f8ca931b4dd6686d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6045724276937600956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2502481529657712774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33f1715ffdde7b94e94f11449255e73d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

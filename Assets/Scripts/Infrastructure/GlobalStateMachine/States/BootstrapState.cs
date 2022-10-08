@@ -6,6 +6,6 @@ public class BootstrapState : State<GameInstance>, IInitializable
 
     public void Initialize()
     {
-        Context.StateMachine.SwitchState<LoadingState>();
+        Context.StateMachine.SwitchState<SetUpLoadingState>();
     }
 }

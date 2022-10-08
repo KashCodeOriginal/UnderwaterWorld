@@ -10,9 +10,7 @@ public class PlayerTriggers : MonoBehaviour
         if (other.TryGetComponent(out IEatable eatable))
         {
             OnFoodEaten?.Invoke(eatable.RecoveryValue);
-            
-            Debug.Log(eatable.RecoveryValue);
-            
+
             eatable.DestroyInstance();
         }
     }

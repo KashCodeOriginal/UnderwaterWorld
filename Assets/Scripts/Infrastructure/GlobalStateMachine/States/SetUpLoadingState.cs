@@ -1,11 +1,11 @@
 using UnityEngine.AddressableAssets;
 
-public class LoadingState : State<GameInstance>
+public class SetUpLoadingState : State<GameInstance>
 {
     private readonly IUIFactory _uiFactory;
     private LoadingGameScreen _loadingGameScreen;
 
-    public LoadingState(GameInstance context, IUIFactory uiFactory) : base(context)
+    public SetUpLoadingState(GameInstance context, IUIFactory uiFactory) : base(context)
     {
         _uiFactory = uiFactory;
     }
