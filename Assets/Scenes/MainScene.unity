@@ -266,7 +266,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94ba7a84060efd24095018c581857b62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _amount: 50
+  _amount: 1
   _minX: -50
   _maxX: 50
   _minZ: -50
@@ -416,7 +416,7 @@ GameObject:
   - component: {fileID: 1761728655}
   - component: {fileID: 1761728654}
   - component: {fileID: 1761728653}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -626,7 +626,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34e60bf8d6a27cf499e926c32a29bbdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _amount: 50
+  _amount: 0
   _minX: -50
   _maxX: 50
   _minZ: -50
@@ -643,6 +643,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ff5c0eb57cca6384998a715e1c2e4c73, type: 2}
   - {fileID: 11400000, guid: 4befb50cda9e08645bf6db476cd6eb84, type: 2}
   - {fileID: 11400000, guid: 46cf53e7e4a87a641b9503d4ef617b49, type: 2}
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 55
 --- !u!4 &3384444144764420813
 Transform:
   m_ObjectHideFlags: 0

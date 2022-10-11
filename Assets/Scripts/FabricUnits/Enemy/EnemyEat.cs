@@ -1,17 +1,17 @@
 using UnityEngine;
 
-public class PlayerEating : MonoBehaviour
+public class EnemyEat : MonoBehaviour
 {
     [SerializeField] private int _hungerPoints;
     private int _maxHungerPoints = 100;
     
-    private PlayerTriggers _playerTriggers;
+    //private PlayerTriggers _playerTriggers;
 
     private void Start()
     {
-        _playerTriggers = GetComponent<PlayerTriggers>();
+        //_playerTriggers = GetComponent<PlayerTriggers>();
         
-        _playerTriggers.OnFoodEaten += IncreaseHunger;
+        //_playerTriggers.OnFoodEaten += IncreaseHunger;
         
         _hungerPoints = _maxHungerPoints;
     }
@@ -39,6 +39,6 @@ public class PlayerEating : MonoBehaviour
 
     private void OnDisable()
     {
-        _playerTriggers.OnFoodEaten -= IncreaseHunger;
+        //_playerTriggers.OnFoodEaten -= IncreaseHunger;
     }
 }

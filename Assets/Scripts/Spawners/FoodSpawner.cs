@@ -17,6 +17,8 @@ public class FoodSpawner : MonoBehaviour
 
     [SerializeField] private FoodSizeDecorator[] _sizeDecorators = Array.Empty<FoodSizeDecorator>();
 
+    [SerializeField] private LayerMask _layerMask;
+
     private IFoodFactory _foodFactory;
 
     [Inject]
@@ -24,7 +26,7 @@ public class FoodSpawner : MonoBehaviour
     {
         _foodFactory = foodFactory;
     }
-    
+
     public void CreateFood()
     {
         for (int i = 0; i < _amount; i++)
@@ -35,7 +37,14 @@ public class FoodSpawner : MonoBehaviour
             }
 
             Vector3 position = new Vector3(Random.Range(_minX, _maxX), _mapHeight, Random.Range(_minZ, _maxZ));
-            
+
+            /*var colliders = Physics.OverlapSphere(position, 5 ,_layerMask);
+
+            foreach (var collider in colliders)
+            {
+                Debug.Log(collider.name);
+            }*/
+
             _foodFactory.CreateObject(position, 
                 _meshDecorators[GetRandomValue(0, _meshDecorators.Length)], 
                 _colorDecorators[GetRandomValue(0, _colorDecorators.Length)], 

@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 4687782662732044543}
   - component: {fileID: 6072955837009881194}
   - component: {fileID: 6045724276937600956}
+  - component: {fileID: 4991378816616031339}
   m_Layer: 0
   m_Name: BaseEnemy
   m_TagString: Untagged
@@ -31,7 +32,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2502481529657712774}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.1115625, y: 15.475181, z: 15.900093}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -101,6 +102,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: 0
+  _speed: 5
+  _check: 1
 --- !u!114 &1244065697521845159
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,3 +154,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33f1715ffdde7b94e94f11449255e73d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &4991378816616031339
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2502481529657712774}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}

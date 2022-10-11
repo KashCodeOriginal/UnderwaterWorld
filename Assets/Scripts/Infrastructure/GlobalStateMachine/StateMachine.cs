@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
+
 public class StateMachine<TContext>
 {
     public StateMachine(TContext context, params State<TContext>[] states)
