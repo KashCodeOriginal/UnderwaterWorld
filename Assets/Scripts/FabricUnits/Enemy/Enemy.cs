@@ -1,4 +1,5 @@
 using System;
+using Pathfinding;
 using UnityEngine;
 using UnitsStateMachine;
 
@@ -13,15 +14,18 @@ public class Enemy : MonoBehaviour
         var _movement = GetComponent<IMoveable>();
         var _attack = GetComponent<IAttackable>();
         var _eat = GetComponent<IEatable>();
+        var _aiDestinationSetter = GetComponent<AIDestinationSetter>();
 
         _stateMachine = new StateMachine();
 
-        var idle = new Idle(this, _movement);
+        var idle = new Idle(this, _movement, _aiDestinationSetter);
         var eat = new Eat();
-        
+
         At(idle, eat, HasTarget);
+        At(eat, idle, NoTarget);
 
         bool HasTarget() => _check == 0;
+        bool NoTarget() => _check == 1;
 
         _stateMachine.SetState(idle);
     }
