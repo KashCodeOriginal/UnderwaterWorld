@@ -1,58 +1,44 @@
 using UnityEngine;
-using Zenject;
+using UnityEngine.Events;
 
 public class EnemyEat : MonoBehaviour
 {
-    [SerializeField] private int _hungerPoints;
-    private int _maxHungerPoints = 100;
+    public event UnityAction<int> IncreaseHunger; 
+
+    private Enemy _enemy;
     
     private EnemyTriggers _enemyTriggers;
 
     private IStatsService _statsService;
-    
-    public int HungerPoint => _hungerPoints;
-    
+
     private void Start()
     {
+        _enemy = GetComponent<Enemy>();
         _enemyTriggers = GetComponent<EnemyTriggers>();
-        
-        _enemyTriggers.OnFoodEaten += IncreaseHunger;
-        
-        _hungerPoints = _maxHungerPoints;
+        _enemyTriggers.OnFoodEaten += TryIncreaseHunger;
     }
 
-    private void Update()
-    {
-        _statsService.DecreaseValue(ref _hungerPoints, 5, 2, 0);
-    }
-
-    [Inject]
-    public void Construct(IStatsService statsService)
-    {
-        _statsService = statsService;
-    }
-    
-    private void IncreaseHunger(int increaseValue)
+    private void TryIncreaseHunger(int increaseValue)
     {
         if (increaseValue <= 0)
         {
             throw new System.ArgumentOutOfRangeException($"{increaseValue} can't be 0 or less");
         }
 
-        if (_hungerPoints + increaseValue <= _maxHungerPoints)
+        if (_enemy.HungerPoints + increaseValue <= Enemy.MAX_HUNGER_POINTS)
         {
-            _hungerPoints += increaseValue;
+            IncreaseHunger?.Invoke(increaseValue);
         }
         else
         {
-            int maxAddableValue = _maxHungerPoints - _hungerPoints;
+            int maxAddableValue = Enemy.MAX_HUNGER_POINTS - _enemy.HungerPoints;
 
-            _hungerPoints += maxAddableValue;
+            IncreaseHunger?.Invoke(maxAddableValue);
         }
     }
 
     private void OnDisable()
     {
-        _enemyTriggers.OnFoodEaten -= IncreaseHunger;
+        _enemyTriggers.OnFoodEaten -= TryIncreaseHunger;
     }
 }
