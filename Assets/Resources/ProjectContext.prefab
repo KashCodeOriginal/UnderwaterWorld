@@ -53,6 +53,7 @@ MonoBehaviour:
   - {fileID: 8346361726602282993}
   - {fileID: 8378249182960880251}
   - {fileID: 8630352779640684657}
+  - {fileID: 6774442249405306746}
   _installerPrefabs: []
   _parentNewObjectsUnderContext: 0
   _editorReflectionBakingCoverageMode: 0
@@ -243,3 +244,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed51930d73ec27240bac87a597f060fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _statsService: {fileID: 0}

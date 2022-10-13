@@ -2,16 +2,13 @@ using Zenject;
 
 public class ObjectsInstaller : MonoInstaller
 {
-    //[SerializeField] private FloatingJoystick _floatingJoystick;
-    
     public override void InstallBindings()
     {
-        
+        BindStatsService();
     }
 
-    private void BindJoystick()
+    private void BindStatsService()
     {
-        //Container.Bind<FloatingJoystick>().From
+        Container.BindInterfacesAndSelfTo<StatsService>().AsTransient();
     }
-    
 }

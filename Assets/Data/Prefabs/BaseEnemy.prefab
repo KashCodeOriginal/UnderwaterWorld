@@ -20,7 +20,10 @@ GameObject:
   - component: {fileID: 5294532557033017579}
   - component: {fileID: 7700064066079613848}
   - component: {fileID: 7995770315209918558}
+  - component: {fileID: 511070096905691454}
   - component: {fileID: 4991378816616031339}
+  - component: {fileID: -3078363447277508120}
+  - component: {fileID: 8836106067611004329}
   m_Layer: 0
   m_Name: BaseEnemy
   m_TagString: Untagged
@@ -106,7 +109,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: 0
-  _check: 1
 --- !u!114 &1244065697521845159
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,11 +159,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33f1715ffdde7b94e94f11449255e73d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _minWalkableX: -50
-  _maxWalkableX: 50
-  _minWalkableZ: 50
-  _maxWalkableZ: 50
-  _mapHeight: 1
   _minWalkableDistance: 10
   _maxWalkableDistance: 20
   _reachedPointDistance: 1
@@ -224,7 +221,7 @@ MonoBehaviour:
     mode: 2
     interval: 0.5
     sensitivity: 10
-    maximumInterval: 2
+    maximumInterval: 1
     visualizeSensitivity: 0
   canMove: 1
   speed: 5
@@ -258,6 +255,18 @@ MonoBehaviour:
   bezierTangentLength: 0.4
   offset: 0.2
   factor: 0.1
+--- !u!114 &511070096905691454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2502481529657712774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 171ae0017e231a548b718ba5f56ad96a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!65 &4991378816616031339
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -271,3 +280,32 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &-3078363447277508120
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2502481529657712774}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.2, y: 1, z: 1.2}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &8836106067611004329
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2502481529657712774}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0

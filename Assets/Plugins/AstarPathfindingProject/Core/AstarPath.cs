@@ -24,7 +24,10 @@ using Thread = System.Threading.Thread;
 /// \ingroup relevant
 /// </summary>
 [HelpURL("http://arongranberg.com/astar/docs/class_astar_path.php")]
-public class AstarPath : VersionedMonoBehaviour {
+public class AstarPath : VersionedMonoBehaviour
+{
+	private bool _isLogsOn = false;
+	
 	/// <summary>The version number for the A* %Pathfinding Project</summary>
 	public static readonly System.Version Version = new System.Version(4, 2, 17);
 
@@ -834,7 +837,11 @@ public class AstarPath : VersionedMonoBehaviour {
 			} else if (path.error) {
 				Debug.LogWarning(debug);
 			} else {
-				Debug.Log(debug);
+
+				if (_isLogsOn)
+				{
+					Debug.Log(debug);
+				}
 			}
 		}
 	}

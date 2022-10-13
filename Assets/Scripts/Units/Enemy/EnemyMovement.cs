@@ -4,13 +4,6 @@ using Random = UnityEngine.Random;
 
 public class EnemyMovement : MonoBehaviour, IMoveable, IAIMoveable
 {
-    [SerializeField] private float _minWalkableX;
-    [SerializeField] private float _maxWalkableX;
-    [SerializeField] private float _minWalkableZ;
-    [SerializeField] private float _maxWalkableZ;
-
-    [SerializeField] private float _mapHeight;
-
     [SerializeField] private float _minWalkableDistance;
     [SerializeField] private float _maxWalkableDistance;
     
@@ -23,31 +16,6 @@ public class EnemyMovement : MonoBehaviour, IMoveable, IAIMoveable
 
     public float Speed { get; private set; }
     
-    public float MinWalkableX
-    {
-        get => _minWalkableX;
-    }
-
-    public float MaxWalkableX
-    {
-        get => _maxWalkableX;
-    }
-
-    public float MinWalkableZ
-    {
-        get => _minWalkableZ;
-    }
-
-    public float MaxWalkableZ
-    {
-        get => _maxWalkableZ;
-    }
-
-    public float MapHeight
-    {
-        get => _mapHeight;
-    }
-
     public float MinWalkableDistance
     {
         get => _minWalkableDistance;
