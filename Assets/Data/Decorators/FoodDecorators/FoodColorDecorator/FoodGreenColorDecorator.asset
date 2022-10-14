@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: FoodGreenColorDecorator
   m_EditorClassIdentifier: 
   _color: {r: 0.28940964, g: 1, b: 0, a: 1}
-  _recoveryValue: 5
+  _recoveryValue: 1

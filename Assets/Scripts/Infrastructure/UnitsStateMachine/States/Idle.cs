@@ -1,13 +1,12 @@
 using Pathfinding;
+using UnityEngine;
 using UnitsStateMachine;
 
 public class Idle : State
 {
     private readonly Enemy _enemy;
-
     private readonly IMoveable _moveable;
-
-    private AIDestinationSetter _aiDestinationSetter;
+    private readonly AIDestinationSetter _aiDestinationSetter;
 
     public Idle(Enemy enemy, IMoveable moveable, AIDestinationSetter aiDestinationSetter)
     {
@@ -18,6 +17,7 @@ public class Idle : State
     
     public override void Tick()
     {
+        Debug.Log("idle");
         _moveable.MoveToRandomPoint(_aiDestinationSetter);
     }
 }

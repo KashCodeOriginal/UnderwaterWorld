@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: FoodSphereDecorator
   m_EditorClassIdentifier: 
   _mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
-  _recoveryValue: -10
+  _recoveryValue: -2

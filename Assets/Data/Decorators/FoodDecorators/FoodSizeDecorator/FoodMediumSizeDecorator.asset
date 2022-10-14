@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: FoodMediumSizeDecorator
   m_EditorClassIdentifier: 
   _size: 1.4
-  _recoveryValue: 5
+  _recoveryValue: 2
