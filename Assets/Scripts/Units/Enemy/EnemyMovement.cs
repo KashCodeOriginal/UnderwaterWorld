@@ -2,7 +2,7 @@ using Pathfinding;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class EnemyMovement : MonoBehaviour, IMoveable, IAIMoveable
+public class EnemyMovement : MonoBehaviour, IMovable, IAIMovable
 {
     [SerializeField] private float _minWalkableX;
     [SerializeField] private float _maxWalkableX;
@@ -20,12 +20,6 @@ public class EnemyMovement : MonoBehaviour, IMoveable, IAIMoveable
     private GameObject _randomPositionTarget;
 
     public float Speed { get; private set; }
-
-
-    public GameObject DefaultMovingTarget
-    {
-        get => _randomPositionTarget;
-    }
 
     public float MinWalkableX
     {

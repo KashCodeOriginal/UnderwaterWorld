@@ -7,10 +7,10 @@ public class EnemyTriggers : MonoBehaviour
     
     private void OnTriggerEnter(Collider collider)
     {
-        if (collider.TryGetComponent(out IEatable eatable))
+        if (collider.TryGetComponent(out IFood food))
         {
-            OnFoodEaten?.Invoke(eatable.RecoveryValue);
-            eatable.DestroyInstance();
+            OnFoodEaten?.Invoke(food.RecoveryValue);
+            food.DestroyInstance();
         }
     }
 }

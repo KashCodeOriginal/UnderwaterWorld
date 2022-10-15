@@ -78,7 +78,8 @@ public class EnemyFactory : IEnemyFactory
             enemyConfig.Damage,
             enemyConfig.Size,
             enemyConfig.Speed,
-            enemyConfig.Mesh);
+            enemyConfig.Mesh,
+            enemyConfig.FoodChoose);
     }
 
     private GameObject SpawnGameObject(EnemyConfig enemyConfig)
@@ -115,14 +116,19 @@ public class EnemyFactory : IEnemyFactory
             enemyMeshHandler.Modify(enemyStats.Mesh, enemyStats.Size);
         }
         
-        if (enemyInstance.TryGetComponent(out IMoveable moveable))
+        if (enemyInstance.TryGetComponent(out IAIMovable moveable))
         {
             moveable.Modify(enemyStats.Speed);
         }
 
-        if (enemyInstance.TryGetComponent(out IAttackable attackable))
+        if (enemyInstance.TryGetComponent(out IAIAttackable attackable))
         {
             attackable.Modify(enemyStats.Damage);
+        }
+        
+        if (enemyInstance.TryGetComponent(out IAIEatable eatable))
+        {
+            eatable.Modify(enemyStats.FoodChoose);
         }
     }
 

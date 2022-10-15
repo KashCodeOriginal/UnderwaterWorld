@@ -2,7 +2,7 @@ using Pathfinding;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class EnemyEat : MonoBehaviour, IAIEatable
+public class EnemyEat : MonoBehaviour, IEatable, IAIEatable
 {
     public event UnityAction<int> IncreaseHunger; 
 
@@ -11,15 +11,21 @@ public class EnemyEat : MonoBehaviour, IAIEatable
     private EnemyTriggers _enemyTriggers;
 
     private IStatsService _statsService;
+    
+    private Transform _currentFoodTarget;
 
-    [SerializeField] private Transform _currentFoodTarget;
+    [SerializeField] private FoodChooseBehavior[] _foodChoose;
 
     public Transform CurrentFoodTarget
     {
         get => _currentFoodTarget;
     }
-    
 
+    public FoodChooseBehavior[] FoodChoose
+    {
+        get => _foodChoose;
+    }
+    
     private void Start()
     {
         _enemy = GetComponent<Enemy>();
@@ -38,13 +44,18 @@ public class EnemyEat : MonoBehaviour, IAIEatable
                 return;
             }
 
-            _currentFoodTarget = collider.TryGetComponent(out IEatable eatable) ? collider.transform : null;
+            _currentFoodTarget = collider.TryGetComponent(out IFood _) ? collider.transform : null;
 
             if (_currentFoodTarget != null)
             {
                 aiDestinationSetter.target = _currentFoodTarget;
             }
         }
+    }
+
+    public void Modify(FoodChooseBehavior[] foodChoose)
+    {
+        _foodChoose = foodChoose;
     }
 
     private void TryIncreaseHunger(int increaseValue)
@@ -70,6 +81,4 @@ public class EnemyEat : MonoBehaviour, IAIEatable
     {
         _enemyTriggers.OnFoodEaten -= TryIncreaseHunger;
     }
-
-    
 }

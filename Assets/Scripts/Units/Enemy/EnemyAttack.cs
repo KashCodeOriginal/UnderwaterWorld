@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemyAttack : MonoBehaviour, IAttackable
+public class EnemyAttack : MonoBehaviour, IAttackable, IAIAttackable
 {
     public int BaseDamage { get; private set; }
     

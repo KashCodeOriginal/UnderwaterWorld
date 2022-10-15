@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Food : MonoBehaviour, IEatable
+public class Food : MonoBehaviour, IFood
 {
     public int RecoveryValue => _recoveryValue;
     

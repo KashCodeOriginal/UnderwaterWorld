@@ -9,6 +9,7 @@ public class EnemyConfig : ScriptableObject
     [SerializeField] private int _speed;
     [SerializeField] private Mesh _mesh;
     [SerializeField] private GameObject _prefab;
+    [SerializeField] private FoodChooseBehavior[] _foodChoose;
 
     public int Health => _health;
     public int Damage => _damage;
@@ -16,4 +17,5 @@ public class EnemyConfig : ScriptableObject
     public float Speed => _speed;
     public Mesh Mesh => _mesh;
     public GameObject Prefab => _prefab;
+    public FoodChooseBehavior[] FoodChoose => _foodChoose;
 }

@@ -1,4 +1,6 @@
-public interface IAIMoveable
+using Pathfinding;
+
+public interface IAIMovable
 {
     public float MinWalkableX { get; }
     public float MaxWalkableX { get; }
@@ -9,4 +11,8 @@ public interface IAIMoveable
     public float MaxWalkableDistance { get; }
     
     public float ReachedPointDistance { get; }
+    
+    public void MoveToRandomPoint(AIDestinationSetter aiDestinationSetter);
+
+    public void Modify(float speed);
 } 

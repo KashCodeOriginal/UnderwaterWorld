@@ -7,11 +7,11 @@ public class PlayerTriggers : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent(out IEatable eatable))
+        if (other.TryGetComponent(out IFood food))
         {
-            OnFoodEaten?.Invoke(eatable.RecoveryValue);
+            OnFoodEaten?.Invoke(food.RecoveryValue);
 
-            eatable.DestroyInstance();
+            food.DestroyInstance();
         }
     }
 }

@@ -1,11 +1,18 @@
 using UnityEngine;
 
-public class PlayerEat : MonoBehaviour
+public class PlayerEat : MonoBehaviour, IEatable
 {
     [SerializeField] private int _hungerPoints;
     private int _maxHungerPoints = 100;
     
     private PlayerTriggers _playerTriggers;
+
+    private FoodChooseBehavior[] _foodChoose;
+
+    public FoodChooseBehavior[] FoodChoose
+    {
+        get => _foodChoose;
+    }
 
     private void Start()
     {
@@ -41,4 +48,6 @@ public class PlayerEat : MonoBehaviour
     {
         _playerTriggers.OnFoodEaten -= IncreaseHunger;
     }
+
+    
 }

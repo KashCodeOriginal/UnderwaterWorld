@@ -7,7 +7,7 @@ public class State<TContext>
         Context = context;
     }
 
-    public virtual void Enter(){}
-    public virtual void Tick(){}
-    public virtual void Exit(){}
+    public virtual void Enter() {}
+    public virtual void Tick() {}
+    public virtual void Exit() {}
 }
