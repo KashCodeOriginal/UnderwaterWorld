@@ -7,9 +7,9 @@ public struct EnemyStats
     public float Size;
     public float Speed;
     public Mesh Mesh;
-    public FoodChooseBehavior[] FoodChoose;
+    public FoodChooseBehavior FoodChoose;
 
-    public EnemyStats(int health, int damage, float size, float speed, Mesh mesh, FoodChooseBehavior[] foodChoose)
+    public EnemyStats(int health, int damage, float size, float speed, Mesh mesh, FoodChooseBehavior foodChoose)
     {
         Health = health;
         Damage = damage;

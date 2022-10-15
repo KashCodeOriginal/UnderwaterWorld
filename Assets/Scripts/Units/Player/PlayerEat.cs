@@ -7,9 +7,9 @@ public class PlayerEat : MonoBehaviour, IEatable
     
     private PlayerTriggers _playerTriggers;
 
-    private FoodChooseBehavior[] _foodChoose;
+    [SerializeField] private FoodChooseBehavior _foodChoose;
 
-    public FoodChooseBehavior[] FoodChoose
+    public FoodChooseBehavior FoodChoose
     {
         get => _foodChoose;
     }

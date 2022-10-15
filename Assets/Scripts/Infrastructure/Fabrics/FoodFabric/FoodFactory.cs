@@ -72,7 +72,8 @@ public class FoodFactory : IFoodFactory
             foodConfig.Mesh,
             foodConfig.Color,
             foodConfig.Size,
-            foodConfig.RecoveryValue
+            foodConfig.RecoveryValue,
+            foodConfig.FoodType
         );
     }
 
@@ -100,9 +101,9 @@ public class FoodFactory : IFoodFactory
     {
         foodInstance.transform.position = position;
 
-        if (foodInstance.TryGetComponent(out Food food))
+        if (foodInstance.TryGetComponent(out IFood food))
         {
-            food.Modify(foodStats.RecoveryValue);
+            food.Modify(foodStats.RecoveryValue, foodStats.FoodType);
         }
 
         if (foodInstance.TryGetComponent(out FoodMeshHandler meshHandler))

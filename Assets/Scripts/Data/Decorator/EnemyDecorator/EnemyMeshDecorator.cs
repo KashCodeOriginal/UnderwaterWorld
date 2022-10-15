@@ -7,7 +7,7 @@ public class EnemyMeshDecorator : EnemyDecorator
     [SerializeField] private int _damage;
     [SerializeField] private float _speed;
     [SerializeField] private Mesh _mesh;
-    [SerializeField] private FoodChooseBehavior[] _foodChoose;
+    [SerializeField] private FoodChooseBehavior _foodChoose;
 
     public override void Decorate(ref EnemyStats sourceStats)
     {

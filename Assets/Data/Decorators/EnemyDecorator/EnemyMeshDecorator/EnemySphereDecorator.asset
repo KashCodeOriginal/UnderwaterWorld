@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daca9446a20a3ca4ca74db72b11b4c53, type: 3}
   m_Name: EnemySphereDecorator
   m_EditorClassIdentifier: 
-  _health: 8
-  _damage: 5
-  _speed: 4
+  _health: 5
+  _damage: 3
+  _speed: 5
   _mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  _foodChoose: 1

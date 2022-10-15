@@ -14,14 +14,14 @@ public class EnemyEat : MonoBehaviour, IEatable, IAIEatable
     
     private Transform _currentFoodTarget;
 
-    [SerializeField] private FoodChooseBehavior[] _foodChoose;
+    [SerializeField] private FoodChooseBehavior _foodChoose;
 
     public Transform CurrentFoodTarget
     {
         get => _currentFoodTarget;
     }
 
-    public FoodChooseBehavior[] FoodChoose
+    public FoodChooseBehavior FoodChoose
     {
         get => _foodChoose;
     }
@@ -53,7 +53,7 @@ public class EnemyEat : MonoBehaviour, IEatable, IAIEatable
         }
     }
 
-    public void Modify(FoodChooseBehavior[] foodChoose)
+    public void Modify(FoodChooseBehavior foodChoose)
     {
         _foodChoose = foodChoose;
     }

@@ -1,4 +1,4 @@
 public interface IEatable
 {
-    public FoodChooseBehavior[] FoodChoose { get; }
+    public FoodChooseBehavior FoodChoose { get; }
 }

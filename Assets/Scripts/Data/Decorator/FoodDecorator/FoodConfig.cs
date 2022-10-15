@@ -8,10 +8,12 @@ public class FoodConfig : ScriptableObject
     [SerializeField] private float _size;
     [SerializeField] private int _recoveryValue;
     [SerializeField] private GameObject _prefab;
+    [SerializeField] private FoodTypeBehavior _foodType;
     
     public Mesh Mesh => _mesh;
     public Color Color => _color;
     public float Size => _size;
     public int RecoveryValue => _recoveryValue;
     public GameObject Prefab => _prefab;
+    public FoodTypeBehavior FoodType => _foodType;
 }

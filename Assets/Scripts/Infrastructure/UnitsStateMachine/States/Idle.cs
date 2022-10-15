@@ -17,7 +17,7 @@ public class Idle : State
     
     public override void Tick()
     {
-        Debug.Log("idle");
+        //Debug.Log("idle");
         _moveable.MoveToRandomPoint(_aiDestinationSetter);
     }
 }

@@ -1,5 +1,6 @@
 public enum FoodChooseBehavior
 {
     Herbivorous,
-    Сarnivorous
+    Сarnivorous,
+    Omnivorous
 }

@@ -266,7 +266,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94ba7a84060efd24095018c581857b62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _amount: 1
+  _amount: 10
   _minX: -50
   _maxX: 50
   _minZ: -50
@@ -275,6 +275,7 @@ MonoBehaviour:
   _meshDecorators:
   - {fileID: 11400000, guid: 055d1de37a747724cb9fb4137bf8f7f9, type: 2}
   - {fileID: 11400000, guid: 2fbac9bcdf17f0c4d91cb598a5c5aaa2, type: 2}
+  - {fileID: 11400000, guid: 926dbe3b5ad132644a9b717f41d7296d, type: 2}
   _colorDecorators:
   - {fileID: 11400000, guid: 9e85b48f665d1dd4ab48c06ebe77030c, type: 2}
   - {fileID: 11400000, guid: 83211123cbd519d40986309a254c1911, type: 2}

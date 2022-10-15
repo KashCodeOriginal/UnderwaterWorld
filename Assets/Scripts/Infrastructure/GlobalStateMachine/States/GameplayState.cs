@@ -2,16 +2,18 @@ using UnityEngine;
 
 public class GameplayState : State<GameInstance>
 {
-    public GameplayState(GameInstance context, IUIFactory uiFactory, IAbstractFactory abstractFactory, IAssetsAddressableService assetsAddressableService) : base(context)
+    public GameplayState(GameInstance context, IUIFactory uiFactory, IAbstractFactory abstractFactory, IAssetsAddressableService assetsAddressableService, IFoodRelationService foodRelationService) : base(context)
     {
         _uiFactory = uiFactory;
         _abstractFactory = abstractFactory;
         _assetsAddressableService = assetsAddressableService;
+        _foodRelationService = foodRelationService;
     }
 
     private readonly IUIFactory _uiFactory;
     private readonly IAbstractFactory _abstractFactory;
     private readonly IAssetsAddressableService _assetsAddressableService;
+    private readonly IFoodRelationService _foodRelationService;
 
     private GameObject _gameplayScreen;
 
@@ -26,6 +28,7 @@ public class GameplayState : State<GameInstance>
         var cameraInstance = _abstractFactory.CreateObject(camera, Vector3.zero);
         
         playerInstance.GetComponent<PlayerInput>().SetJoystick(_gameplayScreen.GetComponentInChildren<FloatingJoystick>());
+        playerInstance.GetComponent<PlayerTriggers>().Construct(_foodRelationService);
         
         cameraInstance.GetComponentInChildren<CameraFollowing>().SetTarget(playerInstance.transform);
     }
