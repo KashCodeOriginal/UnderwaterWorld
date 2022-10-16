@@ -4,17 +4,19 @@ using UnityEngine.Events;
 
 public class EnemyEat : MonoBehaviour, IEatable, IAIEatable
 {
-    public event UnityAction<int> IncreaseHunger; 
+    public event UnityAction<int> IncreaseHunger;
 
-    private Enemy _enemy;
+    [SerializeField] private FoodChooseBehavior _foodChoose;
     
+    private Enemy _enemy;
+
     private UnitTriggers _enemyTriggers;
 
     private IStatsService _statsService;
-    
+
     private Transform _currentFoodTarget;
 
-    [SerializeField] private FoodChooseBehavior _foodChoose;
+    private IFoodRelationService _foodRelationService;
 
     public Transform CurrentFoodTarget
     {
@@ -30,26 +32,28 @@ public class EnemyEat : MonoBehaviour, IEatable, IAIEatable
     {
         _enemy = GetComponent<Enemy>();
         _enemyTriggers = GetComponent<UnitTriggers>();
+
+        _foodRelationService = _enemyTriggers._foodRelationService;
+        
         _enemyTriggers.OnFoodEaten += TryIncreaseHunger;
     }
 
     public void TryFindClosestFood(AIDestinationSetter aiDestinationSetter)
     {
-        var colliders = Physics.OverlapSphere(_enemy.transform.position, 10);
-        
-        foreach (var collider in colliders)
+        if (aiDestinationSetter.target == _currentFoodTarget)
         {
-            if (aiDestinationSetter.target == _currentFoodTarget)
-            {
-                return;
-            }
+            return;
+        }
+        
+        var colliders = Physics.OverlapSphere(_enemy.transform.position, 15);
+        
+        var position = gameObject.transform.position;
 
-            _currentFoodTarget = collider.TryGetComponent(out IFood _) ? collider.transform : null;
+        var closestCollider = FindClosestCollider(colliders, position);
 
-            if (_currentFoodTarget != null)
-            {
-                aiDestinationSetter.target = _currentFoodTarget;
-            }
+        if (closestCollider != null)
+        {
+            FindClosestFood(closestCollider, aiDestinationSetter);
         }
     }
 
@@ -75,6 +79,51 @@ public class EnemyEat : MonoBehaviour, IEatable, IAIEatable
 
             IncreaseHunger?.Invoke(maxAddableValue);
         }
+    }
+
+    private void FindClosestFood(Collider closestCollider, AIDestinationSetter aiDestinationSetter)
+    {
+        if (gameObject.TryGetComponent(out IEatable eatable))
+        {
+            var foodTypes = _foodRelationService.GetEatableFoodType(eatable.FoodChoose);
+
+            var food = closestCollider.GetComponent<IFood>();
+
+            foreach (var foodType in foodTypes)
+            {
+                if (foodType == food.FoodType)
+                {
+                    _currentFoodTarget = closestCollider.transform;
+                }
+                        
+                if (_currentFoodTarget != null)
+                {
+                    aiDestinationSetter.target = _currentFoodTarget;
+                }
+            }
+        }
+    }
+
+    private Collider FindClosestCollider(Collider[] colliders, Vector3 position)
+    {
+        Collider minDistanceCollider = null;
+        var minDistance = Mathf.Infinity;
+
+        foreach (var collider in colliders)
+        {
+            if (collider.TryGetComponent(out IFood _))
+            {
+                float distance = Vector3.Distance(position, collider.transform.position);
+
+                if (distance < minDistance)
+                {
+                    minDistanceCollider = collider;
+                    minDistance = distance;
+                }
+            }
+        }
+
+        return minDistanceCollider;
     }
 
     private void OnDisable()
