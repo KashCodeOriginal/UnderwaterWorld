@@ -28,7 +28,7 @@ public class GameplayState : State<GameInstance>
         var cameraInstance = _abstractFactory.CreateObject(camera, Vector3.zero);
         
         playerInstance.GetComponent<PlayerInput>().SetJoystick(_gameplayScreen.GetComponentInChildren<FloatingJoystick>());
-        playerInstance.GetComponent<PlayerTriggers>().Construct(_foodRelationService);
+        playerInstance.GetComponent<UnitTriggers>().Construct(_foodRelationService);
         
         cameraInstance.GetComponentInChildren<CameraFollowing>().SetTarget(playerInstance.transform);
     }

@@ -20,7 +20,7 @@ GameObject:
   - component: {fileID: 5294532557033017579}
   - component: {fileID: 7700064066079613848}
   - component: {fileID: 7995770315209918558}
-  - component: {fileID: 511070096905691454}
+  - component: {fileID: 3683482188725014916}
   - component: {fileID: 4991378816616031339}
   - component: {fileID: 8836106067611004329}
   m_Layer: 6
@@ -121,6 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1139769be8accec4fb56089efb8edcd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _foodChoose: 0
 --- !u!114 &4687782662732044543
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -258,7 +259,7 @@ MonoBehaviour:
   bezierTangentLength: 0.4
   offset: 0.2
   factor: 0.1
---- !u!114 &511070096905691454
+--- !u!114 &3683482188725014916
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -267,7 +268,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2502481529657712774}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 171ae0017e231a548b718ba5f56ad96a, type: 3}
+  m_Script: {fileID: 11500000, guid: 11a7ccd248b73394fb8d8266201517e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!65 &4991378816616031339

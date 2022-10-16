@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PlayerTriggers : MonoBehaviour
+public class UnitTriggers : MonoBehaviour
 {
     public event UnityAction<int> OnFoodEaten;
 

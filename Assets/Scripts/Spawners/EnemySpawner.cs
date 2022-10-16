@@ -15,14 +15,16 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private EnemySizeDecorator[] _colorDecorators = Array.Empty<EnemySizeDecorator>();
 
     private IEnemyFactory _enemyFactory;
+    private IFoodRelationService _foodRelationService;
 
     [Inject]
-    public void Construct(IEnemyFactory enemyFactory)
+    public void Construct(IEnemyFactory enemyFactory, IFoodRelationService foodRelationService)
     {
         _enemyFactory = enemyFactory;
+        _foodRelationService = foodRelationService;
     }
 
-    public void CreateEnemy()
+    public async void CreateEnemy()
     {
         for (int i = 0; i < _amount; i++)
         {
@@ -33,9 +35,11 @@ public class EnemySpawner : MonoBehaviour
 
             Vector3 position = new Vector3(Random.Range(_minX, _maxX), _mapHeight, Random.Range(_minZ, _maxZ));
 
-            _enemyFactory.CreateObject(position,
+            GameObject instance = await _enemyFactory.CreateObject(position,
                 _meshDecorators[GetRandomValue(0, _meshDecorators.Length)],
                 _colorDecorators[GetRandomValue(0, _colorDecorators.Length)]);
+            
+            instance.GetComponent<UnitTriggers>().Construct(_foodRelationService);
         }
     }
     

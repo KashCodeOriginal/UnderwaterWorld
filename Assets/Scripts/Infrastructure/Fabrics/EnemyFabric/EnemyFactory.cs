@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine.SceneManagement;
 using Zenject;
 using Object = UnityEngine.Object;
@@ -25,7 +26,7 @@ public class EnemyFactory : IEnemyFactory
     private readonly DiContainer _container;
     private readonly IAssetsAddressableService _assetsAddressableService;
 
-    public async void CreateObject(Vector3 position, params EnemyDecorator[] decorators)
+    public async Task<GameObject> CreateObject(Vector3 position, params EnemyDecorator[] decorators)
     {
         EnemyConfig enemyConfig;
 
@@ -42,6 +43,8 @@ public class EnemyFactory : IEnemyFactory
         SetUp(enemyInstance, position, enemyStats);
         
         _instances.Add(enemyInstance);
+
+        return enemyInstance;
     }
 
     public void DestroyInstance(GameObject instance)

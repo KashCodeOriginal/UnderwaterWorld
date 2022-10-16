@@ -8,7 +8,7 @@ public class EnemyEat : MonoBehaviour, IEatable, IAIEatable
 
     private Enemy _enemy;
     
-    private EnemyTriggers _enemyTriggers;
+    private UnitTriggers _enemyTriggers;
 
     private IStatsService _statsService;
     
@@ -29,7 +29,7 @@ public class EnemyEat : MonoBehaviour, IEatable, IAIEatable
     private void Start()
     {
         _enemy = GetComponent<Enemy>();
-        _enemyTriggers = GetComponent<EnemyTriggers>();
+        _enemyTriggers = GetComponent<UnitTriggers>();
         _enemyTriggers.OnFoodEaten += TryIncreaseHunger;
     }
 

@@ -5,7 +5,7 @@ public class PlayerEat : MonoBehaviour, IEatable
     [SerializeField] private int _hungerPoints;
     private int _maxHungerPoints = 100;
     
-    private PlayerTriggers _playerTriggers;
+    private UnitTriggers _unitTriggers;
 
     [SerializeField] private FoodChooseBehavior _foodChoose;
 
@@ -16,9 +16,9 @@ public class PlayerEat : MonoBehaviour, IEatable
 
     private void Start()
     {
-        _playerTriggers = GetComponent<PlayerTriggers>();
+        _unitTriggers = GetComponent<UnitTriggers>();
         
-        _playerTriggers.OnFoodEaten += IncreaseHunger;
+        _unitTriggers.OnFoodEaten += IncreaseHunger;
         
         _hungerPoints = _maxHungerPoints;
     }
@@ -46,7 +46,7 @@ public class PlayerEat : MonoBehaviour, IEatable
 
     private void OnDisable()
     {
-        _playerTriggers.OnFoodEaten -= IncreaseHunger;
+        _unitTriggers.OnFoodEaten -= IncreaseHunger;
     }
 
     
