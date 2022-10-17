@@ -29,7 +29,7 @@ public class FoodFactory : IFoodFactory
     {
         FoodConfig foodConfig;
 
-        foodConfig = await _assetsAddressableService.GetAsset<FoodConfig>(GameConstants.BASE_FOOD_CONFIG);
+        foodConfig = await _assetsAddressableService.GetAsset<FoodConfig>(AssetsAddressesConstants.BASE_FOOD_CONFIG);
         
         FoodStats foodStats = GetUnitStatsFromConfig(foodConfig);
 

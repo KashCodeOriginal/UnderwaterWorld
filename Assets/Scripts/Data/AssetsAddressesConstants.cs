@@ -1,4 +1,4 @@
-public static class GameConstants
+public static class AssetsAddressesConstants
 {
     public const string BASE_FOOD_CONFIG = "BaseFoodConfig";
     public const string BASE_ENEMY_CONFIG = "BaseEnemyConfig";

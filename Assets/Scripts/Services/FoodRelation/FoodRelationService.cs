@@ -14,8 +14,3 @@ public class FoodRelationService : IFoodRelationService
         return _foodTypeRelations[foodChoose];
     }
 }
-
-public interface IFoodRelationService
-{
-    public FoodTypeBehavior[] GetEatableFoodType(FoodChooseBehavior foodChoose);
-}

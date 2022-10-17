@@ -21,8 +21,8 @@ public class GameplayState : State<GameInstance>
     {
         ShowUI();
         
-        GameObject player = await _assetsAddressableService.GetAsset<GameObject>(GameConstants.PLAYER_INSTANCE);
-        GameObject camera = await _assetsAddressableService.GetAsset<GameObject>(GameConstants.CAMERA_INSTANCE);
+        GameObject player = await _assetsAddressableService.GetAsset<GameObject>(AssetsAddressesConstants.PLAYER_INSTANCE);
+        GameObject camera = await _assetsAddressableService.GetAsset<GameObject>(AssetsAddressesConstants.CAMERA_INSTANCE);
         
         var playerInstance =_abstractFactory.CreateObject(player, new Vector3(0,1,0));
         var cameraInstance = _abstractFactory.CreateObject(camera, Vector3.zero);

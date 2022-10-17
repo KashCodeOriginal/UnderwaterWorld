@@ -14,7 +14,7 @@ public class SetUpLoadingState : State<GameInstance>
     {
         ShowUI();
         
-        var asyncOperationHandle = Addressables.LoadSceneAsync(GameConstants.GAMEPLAY_LEVEL_NAME);
+        var asyncOperationHandle = Addressables.LoadSceneAsync(AssetsAddressesConstants.GAMEPLAY_LEVEL_NAME);
         await asyncOperationHandle.Task;
         OnLoadingComplete();
     }

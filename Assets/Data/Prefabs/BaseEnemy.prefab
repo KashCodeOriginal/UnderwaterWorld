@@ -159,10 +159,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33f1715ffdde7b94e94f11449255e73d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _minWalkableX: -50
-  _maxWalkableX: 50
-  _minWalkableZ: -50
-  _maxWalkableZ: 50
+  _minWalkableX: -150
+  _maxWalkableX: 150
+  _minWalkableZ: -150
+  _maxWalkableZ: 150
   _minWalkableDistance: 5
   _maxWalkableDistance: 30
   _reachedPointDistance: 1

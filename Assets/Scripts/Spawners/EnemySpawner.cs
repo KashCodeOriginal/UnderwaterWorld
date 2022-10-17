@@ -6,8 +6,6 @@ using Random = UnityEngine.Random;
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private int _amount;
-    
-    [SerializeField] private float _minX, _maxX, _minZ, _maxZ;
 
     [SerializeField] private float _mapHeight;
     
@@ -16,12 +14,14 @@ public class EnemySpawner : MonoBehaviour
 
     private IEnemyFactory _enemyFactory;
     private IFoodRelationService _foodRelationService;
+    private GameSettings _gameSettings;
 
     [Inject]
-    public void Construct(IEnemyFactory enemyFactory, IFoodRelationService foodRelationService)
+    public void Construct(IEnemyFactory enemyFactory, IFoodRelationService foodRelationService, GameSettings gameSettings)
     {
         _enemyFactory = enemyFactory;
         _foodRelationService = foodRelationService;
+        _gameSettings = gameSettings;
     }
 
     public async void CreateEnemy()
@@ -33,13 +33,17 @@ public class EnemySpawner : MonoBehaviour
                 return;
             }
 
-            Vector3 position = new Vector3(Random.Range(_minX, _maxX), _mapHeight, Random.Range(_minZ, _maxZ));
+            Vector3 position = new Vector3(
+                Random.Range(_gameSettings.MapMinX, _gameSettings.MapMaxX), 
+                _mapHeight, 
+                Random.Range(_gameSettings.MapMinZ, _gameSettings.MapMaxZ));
 
             GameObject instance = await _enemyFactory.CreateObject(position,
                 _meshDecorators[GetRandomValue(0, _meshDecorators.Length)],
                 _colorDecorators[GetRandomValue(0, _colorDecorators.Length)]);
             
             instance.GetComponent<UnitTriggers>().Construct(_foodRelationService);
+            instance.GetComponent<EnemyMovement>().Construct(_gameSettings);
         }
     }
     

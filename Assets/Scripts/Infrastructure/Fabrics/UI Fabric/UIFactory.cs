@@ -18,7 +18,7 @@ public class UIFactory : IUIFactory
 
     public async void CreateLoadingScreen()
     {
-        var asyncOperationHandle = Addressables.LoadAssetAsync<GameObject>(GameConstants.LOADING_GAME_SCREEN);
+        var asyncOperationHandle = Addressables.LoadAssetAsync<GameObject>(AssetsAddressesConstants.LOADING_GAME_SCREEN);
         await asyncOperationHandle.Task;
 
         GameObject prefab = asyncOperationHandle.Result;
@@ -33,7 +33,7 @@ public class UIFactory : IUIFactory
 
     public async Task<GameObject> CreateGameStartScreen()
     {
-        var asyncOperationHandle = Addressables.LoadAssetAsync<GameObject>(GameConstants.START_GAME_SCREEN);
+        var asyncOperationHandle = Addressables.LoadAssetAsync<GameObject>(AssetsAddressesConstants.START_GAME_SCREEN);
         
         await asyncOperationHandle.Task;
         
@@ -52,7 +52,7 @@ public class UIFactory : IUIFactory
 
     public async Task<GameObject> CreateGameplayScreen()
     {
-        var asyncOperationHandle = Addressables.LoadAssetAsync<GameObject>(GameConstants.GAMEPLAY_GAME_SCREEN);
+        var asyncOperationHandle = Addressables.LoadAssetAsync<GameObject>(AssetsAddressesConstants.GAMEPLAY_GAME_SCREEN);
         
         await asyncOperationHandle.Task;
         

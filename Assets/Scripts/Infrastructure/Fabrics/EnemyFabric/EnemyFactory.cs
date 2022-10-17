@@ -8,12 +8,6 @@ using Object = UnityEngine.Object;
 
 public class EnemyFactory : IEnemyFactory
 {
-    public EnemyFactory(DiContainer container, IAssetsAddressableService assetsAddressableService)
-    {
-        _container = container;
-        _assetsAddressableService = assetsAddressableService;
-    }
-
     public event Action OnInstancesListChanged;
 
     public IReadOnlyList<GameObject> Instances
@@ -24,13 +18,19 @@ public class EnemyFactory : IEnemyFactory
     private List<GameObject> _instances = new List<GameObject>();
 
     private readonly DiContainer _container;
+
     private readonly IAssetsAddressableService _assetsAddressableService;
+    public EnemyFactory(DiContainer container, IAssetsAddressableService assetsAddressableService)
+    {
+        _container = container;
+        _assetsAddressableService = assetsAddressableService;
+    }
 
     public async Task<GameObject> CreateObject(Vector3 position, params EnemyDecorator[] decorators)
     {
         EnemyConfig enemyConfig;
 
-        enemyConfig = await _assetsAddressableService.GetAsset<EnemyConfig>(GameConstants.BASE_ENEMY_CONFIG);
+        enemyConfig = await _assetsAddressableService.GetAsset<EnemyConfig>(AssetsAddressesConstants.BASE_ENEMY_CONFIG);
 
         EnemyStats enemyStats = GetUnitStatsFromConfig(enemyConfig);
 

@@ -1,7 +1,10 @@
 using Zenject;
+using UnityEngine;
 
 public class ServiceInstaller : MonoInstaller
 {
+    [SerializeField] private GameSettings _gameSettings;
+    
     public override void InstallBindings()
     {
         BindFoodFactory();
@@ -9,6 +12,7 @@ public class ServiceInstaller : MonoInstaller
         BindAbstractFactory();
         BindEnemyFactory();
         BindAssetsAddressable();
+        BindGameSettings();
     }
     
     private void BindAssetsAddressable()
@@ -34,5 +38,10 @@ public class ServiceInstaller : MonoInstaller
     private void BindEnemyFactory()
     {
         Container.BindInterfacesTo<EnemyFactory>().AsSingle();
+    }
+
+    private void BindGameSettings()
+    {
+        Container.Bind<GameSettings>().FromInstance(_gameSettings).AsSingle();
     }
 }

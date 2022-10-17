@@ -6,8 +6,6 @@ using Random = UnityEngine.Random;
 public class FoodSpawner : MonoBehaviour
 {
     [SerializeField] private int _amount;
-    
-    [SerializeField] private float _minX, _maxX, _minZ, _maxZ;
 
     [SerializeField] private float _mapHeight;
 
@@ -17,14 +15,14 @@ public class FoodSpawner : MonoBehaviour
 
     [SerializeField] private FoodSizeDecorator[] _sizeDecorators = Array.Empty<FoodSizeDecorator>();
 
-    [SerializeField] private LayerMask _layerMask;
-
     private IFoodFactory _foodFactory;
+    private GameSettings _gameSettings;
 
     [Inject]
-    public void Construct(IFoodFactory foodFactory)
+    public void Construct(IFoodFactory foodFactory, GameSettings gameSettings)
     {
         _foodFactory = foodFactory;
+        _gameSettings = gameSettings;
     }
 
     public void CreateFood()
@@ -36,7 +34,10 @@ public class FoodSpawner : MonoBehaviour
                 return;
             }
 
-            Vector3 position = new Vector3(Random.Range(_minX, _maxX), _mapHeight, Random.Range(_minZ, _maxZ));
+            Vector3 position = new Vector3(
+                Random.Range(_gameSettings.MapMinX, _gameSettings.MapMaxX), 
+                _mapHeight, 
+                Random.Range(_gameSettings.MapMinZ, _gameSettings.MapMaxZ));
 
             /*var colliders = Physics.OverlapSphere(position, 5 ,_layerMask);
 

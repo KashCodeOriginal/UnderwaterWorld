@@ -4,11 +4,6 @@ using Random = UnityEngine.Random;
 
 public class EnemyMovement : MonoBehaviour, IMovable, IAIMovable
 {
-    [SerializeField] private float _minWalkableX;
-    [SerializeField] private float _maxWalkableX;
-    [SerializeField] private float _minWalkableZ;
-    [SerializeField] private float _maxWalkableZ;
-    
     [SerializeField] private float _minWalkableDistance;
     [SerializeField] private float _maxWalkableDistance;
     
@@ -19,27 +14,9 @@ public class EnemyMovement : MonoBehaviour, IMovable, IAIMovable
 
     private GameObject _randomPositionTarget;
 
+    private GameSettings _gameSettings;
+
     public float Speed { get; private set; }
-
-    public float MinWalkableX
-    {
-        get => _minWalkableX;
-    }
-
-    public float MaxWalkableX
-    {
-        get => _maxWalkableX;
-    }
-
-    public float MinWalkableZ
-    {
-        get => _minWalkableZ;
-    }
-
-    public float MaxWalkableZ
-    {
-        get => _maxWalkableZ;
-    }
 
     public float MinWalkableDistance
     {
@@ -67,6 +44,11 @@ public class EnemyMovement : MonoBehaviour, IMovable, IAIMovable
         _randomPositionTarget.name = "Target";
     }
 
+    public void Construct(GameSettings gameSettings)
+    {
+        _gameSettings = gameSettings;
+    }
+
 
     public void MoveToRandomPoint(AIDestinationSetter aiDestinationSetter)
     {
@@ -89,7 +71,7 @@ public class EnemyMovement : MonoBehaviour, IMovable, IAIMovable
     {
         Vector3 position = _startPosition + GenerateRandomDirection() * Random.Range(_minWalkableDistance, _maxWalkableDistance);
 
-        while (position.x >= _maxWalkableX || position.x <= _minWalkableZ || position.z >= _maxWalkableZ || position.z <= _minWalkableZ)
+        while (position.x >= _gameSettings.MapMaxX || position.x <= _gameSettings.MapMinX || position.z >= _gameSettings.MapMaxZ || position.z <= _gameSettings.MapMinZ)
         {
             position = _startPosition + GenerateRandomDirection() * Random.Range(_minWalkableDistance, _maxWalkableDistance);
         }
