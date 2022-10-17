@@ -30,9 +30,7 @@ public class UnitTriggers : MonoBehaviour
                     if (foodType == food.FoodType)
                     {
                         OnFoodEaten?.Invoke(food.RecoveryValue);
-
-                        food.DestroyInstance();
-                        
+                        food.DestroyOnEat();
                         return;
                     }
                 }

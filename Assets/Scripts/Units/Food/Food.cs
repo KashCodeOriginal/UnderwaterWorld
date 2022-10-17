@@ -6,6 +6,8 @@ public class Food : MonoBehaviour, IFood
     
     [SerializeField] private FoodTypeBehavior _foodType;
 
+    private IFoodFactory _foodFactory;
+
     public int RecoveryValue
     {
         get => _recoveryValue;
@@ -16,14 +18,19 @@ public class Food : MonoBehaviour, IFood
         get => _foodType;
     }
 
+    public void Construct(IFoodFactory foodFactory)
+    {
+        _foodFactory = foodFactory;
+    }
+
     public void Modify(int recoveryValue, FoodTypeBehavior foodType)
     {
         _recoveryValue += recoveryValue;
         _foodType = foodType;
     }
-    
-    public void DestroyInstance()
+
+    public void DestroyOnEat()
     {
-        Destroy(gameObject);
+        _foodFactory.DestroyInstance(gameObject);
     }
 }

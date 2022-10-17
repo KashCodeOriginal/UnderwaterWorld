@@ -104,6 +104,7 @@ public class FoodFactory : IFoodFactory
         if (foodInstance.TryGetComponent(out IFood food))
         {
             food.Modify(foodStats.RecoveryValue, foodStats.FoodType);
+            food.Construct(this);
         }
 
         if (foodInstance.TryGetComponent(out FoodMeshHandler meshHandler))
