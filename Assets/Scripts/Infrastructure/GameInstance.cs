@@ -4,15 +4,15 @@ public class GameInstance
     {
         StateMachine = new StateMachine<GameInstance>(this,
             new BootstrapState(this),
-            new SetUpLoadingState(this, uiFactory),
-            new SetUpState(this),
-            new GameStartState(this, uiFactory),
-            new GameplayState(this, uiFactory, abstractFactory, assetsAddressableService, foodRelationService)
+            new SceneLoadingState(this, uiFactory),
+            new GameStartMenuState(this, uiFactory),
+            new GameplaySetUpState(this, uiFactory, foodRelationService, abstractFactory, assetsAddressableService),
+            new GameplayState(this, uiFactory)
             );
         
         StateMachine.SwitchState<BootstrapState>();
     }
     
 
-    public StateMachine<GameInstance> StateMachine;
+    public readonly StateMachine<GameInstance> StateMachine;
 }

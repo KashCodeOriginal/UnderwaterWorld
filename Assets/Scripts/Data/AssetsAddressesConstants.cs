@@ -9,4 +9,6 @@ public static class AssetsAddressesConstants
     public const string GAMEPLAY_GAME_SCREEN = "GameplayScreen";
     public const string PLAYER_INSTANCE = "Player";
     public const string CAMERA_INSTANCE = "Camera";
+    public const string MAP_INSTANCE = "Map";
+    public const string PATHFINDING_INSTANCE = "Pathfinding";
 }

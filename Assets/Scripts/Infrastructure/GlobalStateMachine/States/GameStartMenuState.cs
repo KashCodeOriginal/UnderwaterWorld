@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class GameStartState : State<GameInstance>
+public class GameStartMenuState : State<GameInstance>
 {
-    public GameStartState(GameInstance context, IUIFactory uiFactory) : base(context)
+    public GameStartMenuState(GameInstance context, IUIFactory uiFactory) : base(context)
     {
         _uiFactory = uiFactory;
     }
@@ -37,6 +37,6 @@ public class GameStartState : State<GameInstance>
 
     private void StartGame()
     {
-        Context.StateMachine.SwitchState<GameplayState>();
+        Context.StateMachine.SwitchState<GameplaySetUpState>();
     }
 }

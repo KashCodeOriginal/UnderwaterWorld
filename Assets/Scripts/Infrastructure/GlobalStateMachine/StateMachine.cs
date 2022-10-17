@@ -5,11 +5,19 @@ using System.Threading.Tasks;
 
 public class StateMachine<TContext>
 {
-    public StateMachine(TContext context, params State<TContext>[] states)
+    public readonly Dictionary<Type, BaseState<TContext>> States;
+
+    public readonly float TickRate = 0;
+
+    public BaseState<TContext> CurrentState { get; private set; }
+
+    protected TContext Context;
+
+    public StateMachine(TContext context, params BaseState<TContext>[] states)
     {
         Context = context;
 
-        States = new Dictionary<Type, State<TContext>>(states.Length);
+        States = new Dictionary<Type, BaseState<TContext>>(states.Length);
 
         foreach (var state in states)
         {
@@ -19,14 +27,6 @@ public class StateMachine<TContext>
         TickAsync();
     }
 
-    public readonly Dictionary<Type, State<TContext>> States;
-
-    public readonly float TickRate = 0;
-
-    public State<TContext> CurrentState { get; private set; }
-
-    protected TContext Context;
-
     public void SwitchState<TState>() where TState : State<TContext>
     {
         CurrentState?.Exit();
@@ -35,7 +35,29 @@ public class StateMachine<TContext>
 
         CurrentState = newState;
         
-        CurrentState?.Enter();
+        newState?.Enter();
+    }
+    
+    public void SwitchState<TState, T0>(T0 arg0) where TState : StateOneParam<TContext, T0>
+    {
+        CurrentState?.Exit();
+
+        TState newState = GetState<TState>();
+        
+        CurrentState = newState;
+        
+        newState.Enter(arg0);
+    }
+    
+    public void SwitchState<TState, T0, T1>(T0 arg0, T1 arg1) where TState : StateTwoParams<TContext, T0, T1>
+    {
+        CurrentState?.Exit();
+
+        TState newState = GetState<TState>();
+        
+        CurrentState = newState;
+        
+        newState.Enter(arg0, arg1);
     }
 
     private async void TickAsync()
@@ -55,7 +77,7 @@ public class StateMachine<TContext>
         }
     }
 
-    private TState GetState<TState>() where TState : State<TContext>
+    private TState GetState<TState>() where TState : BaseState<TContext>
     {
         return States[typeof(TState)] as TState;
     }

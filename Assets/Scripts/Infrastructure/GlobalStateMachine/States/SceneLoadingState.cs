@@ -1,11 +1,11 @@
 using UnityEngine.AddressableAssets;
 
-public class SetUpLoadingState : State<GameInstance>
+public class SceneLoadingState : State<GameInstance>
 {
     private readonly IUIFactory _uiFactory;
     private LoadingGameScreen _loadingGameScreen;
 
-    public SetUpLoadingState(GameInstance context, IUIFactory uiFactory) : base(context)
+    public SceneLoadingState(GameInstance context, IUIFactory uiFactory) : base(context)
     {
         _uiFactory = uiFactory;
     }
@@ -26,7 +26,7 @@ public class SetUpLoadingState : State<GameInstance>
 
     private void OnLoadingComplete()
     {
-        Context.StateMachine.SwitchState<SetUpState>();
+        Context.StateMachine.SwitchState<GameStartMenuState>();
     }
 
     private void ShowUI()
