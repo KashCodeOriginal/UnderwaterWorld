@@ -56,7 +56,7 @@ public class Enemy : MonoBehaviour
     private void Update()
     {
         _stateMachine.Tick();
-        _statsService.DecreaseValue(ref _hungerPoints, 6, 2, 0);
+        _statsService.DecreaseValue(ref _hungerPoints, 2, 3, 0);
     }
 
     public void Modify(int health)

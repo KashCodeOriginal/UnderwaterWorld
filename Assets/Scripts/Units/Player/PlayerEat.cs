@@ -1,53 +1,52 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerEat : MonoBehaviour, IEatable
 {
-    [SerializeField] private int _hungerPoints;
-    private int _maxHungerPoints = 100;
+    [SerializeField] private FoodChooseBehavior _foodChoose;
     
     private UnitTriggers _unitTriggers;
 
-    [SerializeField] private FoodChooseBehavior _foodChoose;
-
+    private Player _player;
+    
     public FoodChooseBehavior FoodChoose
     {
         get => _foodChoose;
     }
 
+    public event UnityAction<int> IncreaseHunger;
+
     private void Start()
     {
         _unitTriggers = GetComponent<UnitTriggers>();
-        
-        _unitTriggers.OnFoodEaten += IncreaseHunger;
-        
-        _hungerPoints = _maxHungerPoints;
-    }
 
-    public int HungerPoint => _hungerPoints;
+        _player = GetComponent<Player>();
+        
+        _unitTriggers.OnFoodEaten += TryIncreaseHunger;
+    }
     
-    private void IncreaseHunger(int increaseValue)
+    
+    private void TryIncreaseHunger(int increaseValue)
     {
         if (increaseValue <= 0)
         {
             throw new System.ArgumentOutOfRangeException($"{increaseValue} can't be 0 or less");
         }
 
-        if (_hungerPoints + increaseValue <= _maxHungerPoints)
+        if (_player.HungerPoint + increaseValue <= Player.MAX_HUNGER_POINTS)
         {
-            _hungerPoints += increaseValue;
+            IncreaseHunger?.Invoke(increaseValue);
         }
         else
         {
-            int maxAddableValue = _maxHungerPoints - _hungerPoints;
+            int maxAddableValue = Player.MAX_HUNGER_POINTS - _player.HungerPoint;
 
-            _hungerPoints += maxAddableValue;
+            IncreaseHunger?.Invoke(maxAddableValue);
         }
     }
 
     private void OnDisable()
     {
-        _unitTriggers.OnFoodEaten -= IncreaseHunger;
+        _unitTriggers.OnFoodEaten -= TryIncreaseHunger;
     }
-
-    
 }

@@ -1,6 +1,4 @@
-using UnityEngine;
-
-public class GameplayState : State<GameInstance>
+public class GameplayState : StateOneParam<GameInstance, GameplayScreen>
 {
     public GameplayState(GameInstance context, IUIFactory uiFactory) : base(context)
     {
@@ -8,9 +6,15 @@ public class GameplayState : State<GameInstance>
     }
 
     private readonly IUIFactory _uiFactory;
+    private GameplayScreen _gameplayScreen;
     
-    public override void Enter()
+    public override void Enter(GameplayScreen arg0)
     {
+        _gameplayScreen = arg0;
+        
+        _gameplayScreen.FloatingJoystick.gameObject.SetActive(true);
+        _gameplayScreen.AttackButton.gameObject.SetActive(true);
+        
         _uiFactory.DestroyLoadingScreen();
     }
 

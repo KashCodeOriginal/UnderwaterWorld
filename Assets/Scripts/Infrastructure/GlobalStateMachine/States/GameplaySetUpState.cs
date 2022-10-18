@@ -37,14 +37,17 @@ public class GameplaySetUpState : State<GameInstance>
 
         var enemySpawner = Object.FindObjectOfType<EnemySpawner>();
         enemySpawner.CreateEnemy();
-        
 
-        playerInstance.GetComponent<PlayerInput>().SetJoystick(_gameplayScreen.GetComponentInChildren<FloatingJoystick>());
+        if(_gameplayScreen.TryGetComponent(out GameplayScreen gameplayScreen))
+        {
+            playerInstance.GetComponent<PlayerInput>().SetJoystick(gameplayScreen.FloatingJoystick);
+        }
+
         playerInstance.GetComponent<UnitTriggers>().Construct(_foodRelationService);
         
         cameraInstance.GetComponentInChildren<CameraFollowing>().SetTarget(playerInstance.transform);
         
-        Context.StateMachine.SwitchState<GameplayState>();
+        Context.StateMachine.SwitchState<GameplayState, GameplayScreen>(gameplayScreen);
     }
 
     private async void ShowUI()

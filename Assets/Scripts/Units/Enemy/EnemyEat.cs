@@ -2,7 +2,7 @@ using Pathfinding;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class EnemyEat : MonoBehaviour, IEatable, IAIEatable
+public class EnemyEat : MonoBehaviour, IAIEatable
 {
     public event UnityAction<int> IncreaseHunger;
 
