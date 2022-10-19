@@ -22,13 +22,23 @@ public class AbstractFactory : IAbstractFactory
     public GameObject CreateObject(GameObject prefab, Vector3 spawnPoint)
     {
         GameObject instance = _container.InstantiatePrefab(prefab, spawnPoint, Quaternion.identity, null);
+
+        SetUp(instance);
         
         _instances.Add(instance);
 
         return instance;
     }
 
-    public void DestroyObject(GameObject instance)
+    private void SetUp(GameObject instance)
+    {
+        if (instance.TryGetComponent(out PlayerOnDieHandler playerOnDieHandler))
+        {
+            playerOnDieHandler.Construct(this);
+        }
+    }
+
+    public void DestroyInstance(GameObject instance)
     {
         if (instance == null)
         {

@@ -2,18 +2,20 @@ using UnityEngine;
 
 public class GameplaySetUpState : State<GameInstance>
 {
-    public GameplaySetUpState(GameInstance context, IUIFactory uiFactory, IFoodRelationService foodRelationService, IAbstractFactory abstractFactory, IAssetsAddressableService assetsAddressableService) : base(context)
+    public GameplaySetUpState(GameInstance context, IUIFactory uiFactory, IFoodRelationService foodRelationService, IAbstractFactory abstractFactory, IAssetsAddressableService assetsAddressableService, GameSettings gameSettings) : base(context)
     {
         _uiFactory = uiFactory;
         _foodRelationService = foodRelationService;
         _abstractFactory = abstractFactory;
         _assetsAddressableService = assetsAddressableService;
+        _gameSettings = gameSettings;
     }
 
     private readonly IUIFactory _uiFactory;
     private readonly IFoodRelationService _foodRelationService;
     private readonly IAbstractFactory _abstractFactory;
     private readonly IAssetsAddressableService _assetsAddressableService;
+    private readonly GameSettings _gameSettings;
 
     private GameObject _gameplayScreen;
 
@@ -29,7 +31,7 @@ public class GameplaySetUpState : State<GameInstance>
         _abstractFactory.CreateObject(map, Vector3.zero);
         _abstractFactory.CreateObject(pathfinding, Vector3.zero);
         
-        var playerInstance =_abstractFactory.CreateObject(player, new Vector3(0,1,0));
+        var playerInstance =_abstractFactory.CreateObject(player, _gameSettings.PlayerSpawnPoint);
         var cameraInstance = _abstractFactory.CreateObject(camera, Vector3.zero);
         
         var foodSpawner = Object.FindObjectOfType<FoodSpawner>();

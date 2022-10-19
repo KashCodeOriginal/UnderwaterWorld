@@ -17,9 +17,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (joystick.Horizontal != 0 || joystick.Vertical != 0)
         {
-            Quaternion _rotation = Quaternion.LookRotation(_rigidbody.velocity, Vector3.up);
-            
-            transform.rotation = new Quaternion(0, _rotation.y, 0, 0);
+            transform.rotation = Quaternion.LookRotation(_rigidbody.velocity);
         }
         
     }

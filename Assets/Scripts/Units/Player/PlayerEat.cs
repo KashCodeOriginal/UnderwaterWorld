@@ -33,13 +33,13 @@ public class PlayerEat : MonoBehaviour, IEatable
             throw new System.ArgumentOutOfRangeException($"{increaseValue} can't be 0 or less");
         }
 
-        if (_player.HungerPoint + increaseValue <= Player.MAX_HUNGER_POINTS)
+        if (_player.HungerPoints + increaseValue <= Player.MAX_HUNGER_POINTS)
         {
             IncreaseHunger?.Invoke(increaseValue);
         }
         else
         {
-            int maxAddableValue = Player.MAX_HUNGER_POINTS - _player.HungerPoint;
+            int maxAddableValue = Player.MAX_HUNGER_POINTS - _player.HungerPoints;
 
             IncreaseHunger?.Invoke(maxAddableValue);
         }

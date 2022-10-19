@@ -19,6 +19,8 @@ public class Enemy : MonoBehaviour
     private IAIEatable _eatable;
     private IAIAttackable _attackable;
 
+    private IDamagable _damagable;
+
     private AIDestinationSetter _aiDestinationSetter;
 
     public int HealthPoints => _healthPoints;
@@ -31,6 +33,8 @@ public class Enemy : MonoBehaviour
         _eatable = GetComponent<IAIEatable>();
         _attackable = GetComponent<IAIAttackable>();
         _aiDestinationSetter = GetComponent<AIDestinationSetter>();
+
+        _damagable = GetComponent<IDamagable>();
 
         _stateMachine = new StateMachine();
         _statsService = new StatsService();
@@ -74,13 +78,20 @@ public class Enemy : MonoBehaviour
         _hungerPoints += increaseValue;
     }
 
+    private void DecreaseHealth(int decreaseValue)
+    {
+        _healthPoints -= decreaseValue;
+    }
+
     private void OnEnable()
     {
         _eatable.IncreaseHunger += IncreaseHunger;
+        _damagable.ApplyDamage += DecreaseHealth;
     }
 
     private void OnDisable()
     {
         _eatable.IncreaseHunger -= IncreaseHunger;
+        _damagable.ApplyDamage -= DecreaseHealth;
     }
 }

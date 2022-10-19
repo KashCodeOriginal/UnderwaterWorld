@@ -1,6 +1,6 @@
 using Pathfinding;
 
-public interface IAIMovable
+public interface IAIMovable : IMovable
 {
     public float MinWalkableDistance { get; }
     public float MaxWalkableDistance { get; }

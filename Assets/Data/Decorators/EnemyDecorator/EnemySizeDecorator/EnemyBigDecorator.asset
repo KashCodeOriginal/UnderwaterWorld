@@ -15,4 +15,4 @@ MonoBehaviour:
   _health: 5
   _damage: 4
   _speed: 5
-  _size: 2.5
+  _size: 0.9

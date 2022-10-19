@@ -133,6 +133,11 @@ public class EnemyFactory : IEnemyFactory
         {
             eatable.Modify(enemyStats.FoodChoose);
         }
+        
+        if (enemyInstance.TryGetComponent(out EnemyOnDieHandler enemyOnDieHandler))
+        {
+            enemyOnDieHandler.Construct(this);
+        }
     }
 
     private void ToScene(GameObject target)

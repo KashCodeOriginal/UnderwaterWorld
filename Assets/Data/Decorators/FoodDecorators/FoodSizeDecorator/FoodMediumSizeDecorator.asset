@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ca3a075e945a64468d6def08173bb44, type: 3}
   m_Name: FoodMediumSizeDecorator
   m_EditorClassIdentifier: 
-  _size: 1.4
+  _size: 0.5
   _recoveryValue: 2

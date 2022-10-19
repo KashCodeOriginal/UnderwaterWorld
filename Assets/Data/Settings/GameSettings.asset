@@ -16,3 +16,4 @@ MonoBehaviour:
   _mapMaxXPosition: 150
   _mapMinZPosition: -150
   _mapMaxZPosition: 150
+  _playerSpawnPoint: {x: 0, y: 0.25, z: 0}
