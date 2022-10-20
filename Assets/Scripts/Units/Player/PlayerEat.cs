@@ -6,9 +6,8 @@ public class PlayerEat : MonoBehaviour, IEatable
     [SerializeField] private FoodChooseBehavior _foodChoose;
     
     private UnitTriggers _unitTriggers;
+    private UnitHunger _unitHunger;
 
-    private Player _player;
-    
     public FoodChooseBehavior FoodChoose
     {
         get => _foodChoose;
@@ -20,7 +19,7 @@ public class PlayerEat : MonoBehaviour, IEatable
     {
         _unitTriggers = GetComponent<UnitTriggers>();
 
-        _player = GetComponent<Player>();
+        _unitHunger = GetComponent<UnitHunger>();
         
         _unitTriggers.OnFoodEaten += TryIncreaseHunger;
     }
@@ -33,13 +32,13 @@ public class PlayerEat : MonoBehaviour, IEatable
             throw new System.ArgumentOutOfRangeException($"{increaseValue} can't be 0 or less");
         }
 
-        if (_player.HungerPoints + increaseValue <= Player.MAX_HUNGER_POINTS)
+        if (_unitHunger.HungerPoints + increaseValue <= UnitHunger.MAX_HUNGER_POINTS)
         {
             IncreaseHunger?.Invoke(increaseValue);
         }
         else
         {
-            int maxAddableValue = Player.MAX_HUNGER_POINTS - _player.HungerPoints;
+            int maxAddableValue = UnitHunger.MAX_HUNGER_POINTS - _unitHunger.HungerPoints;
 
             IncreaseHunger?.Invoke(maxAddableValue);
         }

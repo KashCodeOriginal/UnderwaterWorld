@@ -1,21 +1,21 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class PlayerConnectedModules : MonoBehaviour
+public class UnitConnectedModules : MonoBehaviour
 {
     [SerializeField] private List<GameObject> _connectedModules;
 
-    private IAttackable _playerAttack;
+    private IAttackable _unitAttackable;
 
     private void Start()
     {
-        _playerAttack = GetComponent<IAttackable>();
+        _unitAttackable = GetComponent<IAttackable>();
         
         foreach (var module in _connectedModules)
         {
             if (module.TryGetComponent(out IConnectableModule connectableModule))
             {
-                connectableModule.Construct(_playerAttack);
+                connectableModule.Construct(_unitAttackable);
             }
         }
     }

@@ -94,7 +94,8 @@ GameObject:
   - component: {fileID: 4982178427043830243}
   - component: {fileID: 7259356018872491337}
   - component: {fileID: 4982178427043830246}
-  - component: {fileID: 7131682953276412919}
+  - component: {fileID: 7013249593805207183}
+  - component: {fileID: 3034918193083747225}
   - component: {fileID: 5627488095872813976}
   - component: {fileID: 4056477151510614282}
   - component: {fileID: 5518683588326859680}
@@ -157,7 +158,7 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7131682953276412919
+--- !u!114 &7013249593805207183
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -166,10 +167,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 4982178427043830247}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3df7df45c512f4142ac41cff07ce6141, type: 3}
+  m_Script: {fileID: 11500000, guid: b75e2e34c3cb5574685e33c1f71001fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _healthPoints: 0
+--- !u!114 &3034918193083747225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4982178427043830247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 949ca1f1f34be054dbc5d741421a2649, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   _hungerPoints: 0
 --- !u!114 &5627488095872813976
 MonoBehaviour:

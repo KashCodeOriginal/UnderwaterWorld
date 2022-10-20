@@ -6,16 +6,16 @@ public class PlayerDamageHandler : MonoBehaviour, IDamagable
     public event UnityAction<int> ApplyDamage;
     public event UnityAction OnDied;
 
-    private Player _player;
+    private UnitHealth _unitHealth;
 
     private void Start()
     {
-        _player = GetComponent<Player>();
+        _unitHealth = GetComponent<UnitHealth>();
     }
     
     public void TryApplyDamage(int damage)
     {
-        if (_player.HealthPoints - damage <= 0)
+        if (_unitHealth.HealthPoints - damage <= 0)
         {
             OnDied?.Invoke();
             return;
