@@ -8,7 +8,7 @@ public class EnemyEat : MonoBehaviour, IAIEatable
 
     [SerializeField] private FoodChooseBehavior _foodChoose;
     
-    private Enemy _enemy;
+    private UnitHunger _enemyHunger;
 
     private UnitTriggers _enemyTriggers;
 
@@ -30,7 +30,7 @@ public class EnemyEat : MonoBehaviour, IAIEatable
     
     private void Start()
     {
-        _enemy = GetComponent<Enemy>();
+        _enemyHunger = GetComponent<UnitHunger>();
         _enemyTriggers = GetComponent<UnitTriggers>();
 
         _foodRelationService = _enemyTriggers._foodRelationService;
@@ -45,7 +45,7 @@ public class EnemyEat : MonoBehaviour, IAIEatable
             return;
         }
         
-        var colliders = Physics.OverlapSphere(_enemy.transform.position, 15);
+        var colliders = Physics.OverlapSphere(_enemyHunger.transform.position, 15);
         
         var position = gameObject.transform.position;
 
@@ -69,13 +69,13 @@ public class EnemyEat : MonoBehaviour, IAIEatable
             throw new System.ArgumentOutOfRangeException($"{increaseValue} can't be 0 or less");
         }
 
-        if (_enemy.HungerPoints + increaseValue <= Enemy.MAX_HUNGER_POINTS)
+        if (_enemyHunger.HungerPoints + increaseValue <= UnitHunger.MAX_HUNGER_POINTS)
         {
             IncreaseHunger?.Invoke(increaseValue);
         }
         else
         {
-            int maxAddableValue = Enemy.MAX_HUNGER_POINTS - _enemy.HungerPoints;
+            int maxAddableValue = UnitHunger.MAX_HUNGER_POINTS - _enemyHunger.HungerPoints;
 
             IncreaseHunger?.Invoke(maxAddableValue);
         }

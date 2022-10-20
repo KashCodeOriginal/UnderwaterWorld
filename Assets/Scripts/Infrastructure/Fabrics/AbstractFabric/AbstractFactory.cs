@@ -32,9 +32,9 @@ public class AbstractFactory : IAbstractFactory
 
     private void SetUp(GameObject instance)
     {
-        if (instance.TryGetComponent(out PlayerOnDieHandler playerOnDieHandler))
+        if (instance.TryGetComponent(out UnitOnDieHandler unitOnDieHandler))
         {
-            playerOnDieHandler.Construct(this);
+            unitOnDieHandler.Construct(this);
         }
     }
 
@@ -54,5 +54,15 @@ public class AbstractFactory : IAbstractFactory
         {
             throw new NullReferenceException($"Instance {instance} can't be destroyed, cause there is no {instance} on Abstract Factory Instances");
         }
+    }
+
+    public void DestroyAllInstances()
+    {
+        for (int i = 0; i < _instances.Count; i++)
+        {
+            Object.Destroy(_instances[i]);
+        }
+        
+        _instances.Clear();
     }
 }

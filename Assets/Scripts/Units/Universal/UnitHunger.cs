@@ -6,7 +6,14 @@ public class UnitHunger : MonoBehaviour, IHunger
     
     [SerializeField] private int _hungerPoints;
     
+    private StatsService _statsService;
+    
     private IEatable _eatable;
+    
+    public int HungerPoint
+    {
+        get => _hungerPoints;
+    }
 
     public int HungerPoints
     {
@@ -15,11 +22,18 @@ public class UnitHunger : MonoBehaviour, IHunger
 
     private void Start()
     {
+        _statsService = new StatsService();
+        
         _hungerPoints = MAX_HUNGER_POINTS;
 
         _eatable = GetComponent<IEatable>();
 
         _eatable.IncreaseHunger += IncreaseHunger;
+    }
+
+    private void Update()
+    {
+        _statsService.DecreaseValue(ref _hungerPoints, 2, 3, 0);
     }
 
     public void IncreaseHunger(int increaseValue)

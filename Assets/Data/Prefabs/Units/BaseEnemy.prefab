@@ -93,17 +93,19 @@ GameObject:
   m_Component:
   - component: {fileID: 2326141272016101561}
   - component: {fileID: 4171711284543173983}
+  - component: {fileID: 4156401801198169087}
+  - component: {fileID: 5183919433535608860}
   - component: {fileID: 1244065697521845159}
   - component: {fileID: 4687782662732044543}
   - component: {fileID: 6072955837009881194}
   - component: {fileID: 6045724276937600956}
-  - component: {fileID: -6155208543555019926}
-  - component: {fileID: 3063623458173136231}
+  - component: {fileID: 5051324992747015621}
   - component: {fileID: 6074395114394522698}
   - component: {fileID: 5294532557033017579}
   - component: {fileID: 7700064066079613848}
   - component: {fileID: 7995770315209918558}
   - component: {fileID: 3683482188725014916}
+  - component: {fileID: -8613702443402859396}
   - component: {fileID: 9098572231584507482}
   - component: {fileID: 4991378816616031339}
   - component: {fileID: 8836106067611004329}
@@ -143,7 +145,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5375c1b195075804bbc1772ecbe5c6b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4156401801198169087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2502481529657712774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b75e2e34c3cb5574685e33c1f71001fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   _healthPoints: 0
+--- !u!114 &5183919433535608860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2502481529657712774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 949ca1f1f34be054dbc5d741421a2649, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   _hungerPoints: 0
 --- !u!114 &1244065697521845159
 MonoBehaviour:
@@ -198,7 +224,7 @@ MonoBehaviour:
   _minWalkableDistance: 5
   _maxWalkableDistance: 30
   _reachedPointDistance: 1
---- !u!114 &-6155208543555019926
+--- !u!114 &5051324992747015621
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -207,19 +233,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2502481529657712774}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bba282f1e8c87c49aa98c187d691805, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &3063623458173136231
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2502481529657712774}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3debd91fe25d5a46807ab945b754b8b, type: 3}
+  m_Script: {fileID: 11500000, guid: f3f66e58df015444a8cecbcd10ece714, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &6074395114394522698
@@ -325,6 +339,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 11a7ccd248b73394fb8d8266201517e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-8613702443402859396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2502481529657712774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f62ca374b4c643c40b4b170b1aee132d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &9098572231584507482

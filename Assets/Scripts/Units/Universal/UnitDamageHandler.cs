@@ -1,21 +1,21 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class EnemyDamageHandler : MonoBehaviour, IDamagable
+public class UnitDamageHandler : MonoBehaviour, IDamagable
 {
     public event UnityAction<int> ApplyDamage;
     public event UnityAction OnDied;
 
-    private Enemy _enemy;
+    private IHealth _unitHealth;
 
     private void Start()
     {
-        _enemy = GetComponent<Enemy>();
+        _unitHealth = GetComponent<UnitHealth>();
     }
-
+    
     public void TryApplyDamage(int damage)
     {
-        if (_enemy.HealthPoints - damage <= 0)
+        if (_unitHealth.HealthPoints - damage <= 0)
         {
             OnDied?.Invoke();
             return;

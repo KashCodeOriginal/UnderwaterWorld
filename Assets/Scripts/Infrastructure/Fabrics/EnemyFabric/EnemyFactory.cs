@@ -109,7 +109,7 @@ public class EnemyFactory : IEnemyFactory
     {
         enemyInstance.transform.position = position;
 
-        if (enemyInstance.TryGetComponent(out Enemy enemy))
+        if (enemyInstance.TryGetComponent(out UnitHealth enemy))
         {
             enemy.Modify(enemyStats.Health);
         }
@@ -134,7 +134,7 @@ public class EnemyFactory : IEnemyFactory
             eatable.Modify(enemyStats.FoodChoose);
         }
         
-        if (enemyInstance.TryGetComponent(out EnemyOnDieHandler enemyOnDieHandler))
+        if (enemyInstance.TryGetComponent(out UnitOnDieHandler enemyOnDieHandler))
         {
             enemyOnDieHandler.Construct(this);
         }

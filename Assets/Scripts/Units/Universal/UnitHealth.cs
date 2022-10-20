@@ -27,6 +27,11 @@ public class UnitHealth : MonoBehaviour, IHealth
         _healthPoints -= decreaseValue;
     }
 
+    public void Modify(int value)
+    {
+        _healthPoints += value;
+    }
+
     private void OnDisable()
     {
         _damagable.ApplyDamage -= DecreaseHealth;

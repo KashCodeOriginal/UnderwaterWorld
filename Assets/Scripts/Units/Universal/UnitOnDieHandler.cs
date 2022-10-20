@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerOnDieHandler : MonoBehaviour
+public class UnitOnDieHandler : MonoBehaviour
 {
     private UnitDamageHandler _playerDamageHandler;
     private IFactory _factory;
