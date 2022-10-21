@@ -6,7 +6,9 @@ public interface IUIFactory : IUIInfo
     public void CreateLoadingScreen();
     public void DestroyLoadingScreen();
     public Task<GameObject> CreateGameStartScreen();
+    public void CreatePlayerDiedScreen();
     public void DestroyGameStartScreen();
     public Task<GameObject> CreateGameplayScreen();
     public void DestroyGameplayScreen();
+    public void DestroyPlayerDiedScreen();
 }

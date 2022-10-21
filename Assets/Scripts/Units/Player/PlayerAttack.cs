@@ -22,6 +22,6 @@ public class PlayerAttack : MonoBehaviour, IAttackable
 
     public void TryAttack(IDamagable damagable)
     {
-        damagable.TryApplyDamage(BaseDamage);
+        damagable.TryApplyDamage(BaseDamage, gameObject);
     }
 }

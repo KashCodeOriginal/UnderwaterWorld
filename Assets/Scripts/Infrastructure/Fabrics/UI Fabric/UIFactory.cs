@@ -8,6 +8,7 @@ public class UIFactory : IUIFactory
     public GameObject LoadingGameScreen { get; private set; }
     public GameObject StartGameScreen { get; private set; }
     public GameObject GameplayScreen { get; private set; }
+    public GameObject PlayerDiedScreen { get; private set; }
 
     private readonly DiContainer _container;
 
@@ -43,7 +44,18 @@ public class UIFactory : IUIFactory
 
         return StartGameScreen;
     }
-    
+
+    public async void CreatePlayerDiedScreen()
+    {
+        var asyncOperationHandle = Addressables.LoadAssetAsync<GameObject>(AssetsAddressesConstants.PlAYER_DIED_SCREEN);
+        
+        await asyncOperationHandle.Task;
+        
+        GameObject prefab = asyncOperationHandle.Result;
+
+        PlayerDiedScreen = _container.InstantiatePrefab(prefab);
+    }
+
 
     public void DestroyGameStartScreen()
     {
@@ -66,5 +78,10 @@ public class UIFactory : IUIFactory
     public void DestroyGameplayScreen()
     {
         Object.Destroy(GameplayScreen);
+    }
+
+    public void DestroyPlayerDiedScreen()
+    {
+        Object.Destroy(PlayerDiedScreen);
     }
 }

@@ -49,7 +49,7 @@ public class GameplaySetUpState : State<GameInstance>
         
         cameraInstance.GetComponentInChildren<CameraFollowing>().SetTarget(playerInstance.transform);
         
-        Context.StateMachine.SwitchState<GameplayState, GameplayScreen>(gameplayScreen);
+        Context.StateMachine.SwitchState<GameplayState, GameplayScreen, GameObject, GameObject>(gameplayScreen, playerInstance, cameraInstance);
     }
 
     private async void ShowUI()

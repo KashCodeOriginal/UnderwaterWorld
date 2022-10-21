@@ -2,13 +2,14 @@ using UnityEngine.AddressableAssets;
 
 public class SceneLoadingState : State<GameInstance>
 {
-    private readonly IUIFactory _uiFactory;
-    private LoadingGameScreen _loadingGameScreen;
-
     public SceneLoadingState(GameInstance context, IUIFactory uiFactory) : base(context)
     {
         _uiFactory = uiFactory;
     }
+
+    private readonly IUIFactory _uiFactory;
+
+    private LoadingGameScreen _loadingGameScreen;
 
     public override async void Enter()
     {

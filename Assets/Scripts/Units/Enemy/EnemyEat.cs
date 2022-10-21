@@ -8,7 +8,7 @@ public class EnemyEat : MonoBehaviour, IAIEatable
 
     [SerializeField] private FoodChooseBehavior _foodChoose;
     
-    private UnitHunger _enemyHunger;
+    private IHunger _enemyHunger;
 
     private UnitTriggers _enemyTriggers;
 
@@ -30,7 +30,7 @@ public class EnemyEat : MonoBehaviour, IAIEatable
     
     private void Start()
     {
-        _enemyHunger = GetComponent<UnitHunger>();
+        _enemyHunger = GetComponent<IHunger>();
         _enemyTriggers = GetComponent<UnitTriggers>();
 
         _foodRelationService = _enemyTriggers._foodRelationService;
@@ -45,11 +45,11 @@ public class EnemyEat : MonoBehaviour, IAIEatable
             return;
         }
         
-        var colliders = Physics.OverlapSphere(_enemyHunger.transform.position, 15);
+        var enemyPosition = gameObject.transform.position;
         
-        var position = gameObject.transform.position;
+        var colliders = Physics.OverlapSphere(enemyPosition, 15);
 
-        var closestCollider = FindClosestCollider(colliders, position);
+        var closestCollider = FindClosestCollider(colliders, enemyPosition);
 
         if (closestCollider != null)
         {

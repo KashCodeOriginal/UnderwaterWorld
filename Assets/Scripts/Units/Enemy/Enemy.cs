@@ -11,7 +11,9 @@ public class Enemy : MonoBehaviour
     private IAIEatable _eatable;
     private IAIAttackable _attackable;
     
-    private UnitHunger _unitHunger;
+    private IHunger _unitHunger;
+
+    private IDamagable _unitDamageHandler;
 
     private AIDestinationSetter _aiDestinationSetter;
 
@@ -22,18 +24,24 @@ public class Enemy : MonoBehaviour
         _attackable = GetComponent<IAIAttackable>();
         _aiDestinationSetter = GetComponent<AIDestinationSetter>();
 
-        _unitHunger = GetComponent<UnitHunger>();
+        _unitDamageHandler = GetComponent<IDamagable>();
+
+        _unitHunger = GetComponent<IHunger>();
         
         _stateMachine = new StateMachine();
 
         var idle = new Idle(this, _movable, _aiDestinationSetter);
-        var findFood = new FindFood(this, _eatable ,_aiDestinationSetter);
+        var findFood = new FindFood(this, _eatable, _aiDestinationSetter);
+        var flee = new Flee(_unitDamageHandler, _aiDestinationSetter, _movable);
 
         AddTransition(idle, findFood, NeedFood);
         AddTransition(findFood, idle, CanIdle);
+        
+        _stateMachine.AddAnyTransition(flee, Flee);
 
-        bool NeedFood() => _unitHunger.HungerPoint <= 60;  
-        bool CanIdle() => _unitHunger.HungerPoint > 60 || _eatable.CurrentFoodTarget == null;
+        bool NeedFood() => _unitHunger.HungerPoints <= 60;  
+        bool CanIdle() => _unitHunger.HungerPoints > 60 || _eatable.CurrentFoodTarget == null;
+        bool Flee() => _unitDamageHandler.Attacker != null;
 
         _stateMachine.SetState(idle);
     }

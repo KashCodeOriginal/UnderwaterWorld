@@ -61,6 +61,15 @@ public class EnemyMovement : MonoBehaviour, IAIMovable
 
         aiDestinationSetter.target = _randomPositionTarget.transform;
     }
+    
+    public void MoveAwayFromAttacker(AIDestinationSetter aiDestinationSetter, Transform attackerPosition)
+    {
+        var position = GenerateRoamingPosition(attackerPosition);
+
+        _randomPositionTarget.transform.position = position;
+        
+        aiDestinationSetter.target = _randomPositionTarget.transform;
+    }
 
     public void Modify(float speed)
     {
@@ -78,8 +87,26 @@ public class EnemyMovement : MonoBehaviour, IAIMovable
 
         return position;
     }
+    
+    private Vector3 GenerateRoamingPosition(Transform attackerPosition)
+    {
+        Vector3 position = _startPosition + GenerateDefinedDirection(attackerPosition) * Random.Range(_minWalkableDistance, _maxWalkableDistance);
+
+        while (position.x >= _gameSettings.MapMaxX || position.x <= _gameSettings.MapMinX || position.z >= _gameSettings.MapMaxZ || position.z <= _gameSettings.MapMinZ)
+        {
+            position = _startPosition + GenerateDefinedDirection(attackerPosition) * Random.Range(_minWalkableDistance, _maxWalkableDistance);
+        }
+
+        return position;
+    }
+    
     private Vector3 GenerateRandomDirection()
     {
         return new Vector3(Random.Range(-1f, 1f),0 ,Random.Range(-1f, 1f)).normalized;
+    }
+
+    private Vector3 GenerateDefinedDirection(Transform attackerPosition)
+    {
+        return -attackerPosition.transform.position.normalized;
     }
 }

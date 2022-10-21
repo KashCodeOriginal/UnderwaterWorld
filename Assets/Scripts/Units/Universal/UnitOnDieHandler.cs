@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class UnitOnDieHandler : MonoBehaviour
 {
-    private UnitDamageHandler _playerDamageHandler;
+    private IDamagable _playerDamageHandler;
     private IFactory _factory;
 
     private void Start()
     {
-        _playerDamageHandler = GetComponent<UnitDamageHandler>();
+        _playerDamageHandler = GetComponent<IDamagable>();
         
         _playerDamageHandler.OnDied += OnDie;
     }

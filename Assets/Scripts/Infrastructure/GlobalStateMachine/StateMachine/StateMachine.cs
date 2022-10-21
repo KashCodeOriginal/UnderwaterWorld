@@ -59,6 +59,17 @@ public class StateMachine<TContext>
         
         newState.Enter(arg0, arg1);
     }
+    
+    public void SwitchState<TState, T0, T1, T2>(T0 arg0, T1 arg1, T2 arg2) where TState : StateThreeParams<TContext, T0, T1, T2>
+    {
+        CurrentState?.Exit();
+
+        TState newState = GetState<TState>();
+        
+        CurrentState = newState;
+        
+        newState.Enter(arg0, arg1, arg2);
+    }
 
     private async void TickAsync()
     {

@@ -7,7 +7,7 @@ public class EnemyAttack : MonoBehaviour, IAIAttackable
     public bool IsCooldown { get; }
     public void TryAttack(IDamagable damagable)
     {
-        damagable.TryApplyDamage(BaseDamage);
+        damagable.TryApplyDamage(BaseDamage, gameObject);
     }
 
     public void Modify(int baseDamage)

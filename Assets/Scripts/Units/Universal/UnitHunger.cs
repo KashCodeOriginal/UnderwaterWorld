@@ -9,11 +9,6 @@ public class UnitHunger : MonoBehaviour, IHunger
     private StatsService _statsService;
     
     private IEatable _eatable;
-    
-    public int HungerPoint
-    {
-        get => _hungerPoints;
-    }
 
     public int HungerPoints
     {

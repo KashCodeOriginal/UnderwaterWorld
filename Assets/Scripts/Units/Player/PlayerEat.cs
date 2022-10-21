@@ -6,7 +6,7 @@ public class PlayerEat : MonoBehaviour, IEatable
     [SerializeField] private FoodChooseBehavior _foodChoose;
     
     private UnitTriggers _unitTriggers;
-    private UnitHunger _unitHunger;
+    private IHunger _unitHunger;
 
     public FoodChooseBehavior FoodChoose
     {
@@ -19,7 +19,7 @@ public class PlayerEat : MonoBehaviour, IEatable
     {
         _unitTriggers = GetComponent<UnitTriggers>();
 
-        _unitHunger = GetComponent<UnitHunger>();
+        _unitHunger = GetComponent<IHunger>();
         
         _unitTriggers.OnFoodEaten += TryIncreaseHunger;
     }

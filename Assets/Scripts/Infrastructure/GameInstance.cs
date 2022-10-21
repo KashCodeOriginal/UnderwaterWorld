@@ -7,7 +7,8 @@ public class GameInstance
             new SceneLoadingState(this, uiFactory),
             new GameStartMenuState(this, uiFactory),
             new GameplaySetUpState(this, uiFactory, foodRelationService, abstractFactory, assetsAddressableService, gameSettings),
-            new GameplayState(this, uiFactory)
+            new GameplayState(this, uiFactory),
+            new PlayerDiedState(this, uiFactory)
             );
         
         StateMachine.SwitchState<BootstrapState>();
