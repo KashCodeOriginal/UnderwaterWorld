@@ -17,7 +17,7 @@ public class FindFood : State
 
     public override void Tick()
     {
-        //Debug.Log("eat");
+        Debug.Log("Ищу еду");
         _enemyEat.TryFindClosestFood(_aiDestinationSetter);
     }
 }

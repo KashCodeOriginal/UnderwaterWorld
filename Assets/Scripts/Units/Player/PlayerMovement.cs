@@ -1,10 +1,12 @@
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour, IMovable
 {
     [SerializeField] private float _speed;
-    
+
     private Rigidbody _rigidbody;
+
+    public float Speed => _speed;
 
     private void Start()
     {

@@ -36,12 +36,14 @@ public class Enemy : MonoBehaviour
 
         AddTransition(idle, findFood, NeedFood);
         AddTransition(findFood, idle, CanIdle);
+        AddTransition(flee, idle, Escaped);
         
         _stateMachine.AddAnyTransition(flee, Flee);
 
         bool NeedFood() => _unitHunger.HungerPoints <= 60;  
         bool CanIdle() => _unitHunger.HungerPoints > 60 || _eatable.CurrentFoodTarget == null;
         bool Flee() => _unitDamageHandler.Attacker != null;
+        bool Escaped() => _unitDamageHandler.Attacker == null;
 
         _stateMachine.SetState(idle);
     }

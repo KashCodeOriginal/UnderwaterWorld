@@ -171,7 +171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b75e2e34c3cb5574685e33c1f71001fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _healthPoints: 100
+  _healthPoints: 10000
 --- !u!114 &3034918193083747225
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -236,7 +236,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591373bfbdfbd8641bb42a8ce0f5ce78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 10
+  _damage: 1
   _attackSpeed: 0
   _isCooldown: 0
 --- !u!114 &-8980878612113609366

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf4ec7a70e932c547b5dfafa0ee96b7d, type: 3}
   m_Name: GameSettings
   m_EditorClassIdentifier: 
-  _mapMinXPosition: -150
-  _mapMaxXPosition: 150
-  _mapMinZPosition: -150
-  _mapMaxZPosition: 150
+  _mapMinXPosition: -50
+  _mapMaxXPosition: 50
+  _mapMinZPosition: -50
+  _mapMaxZPosition: 50
   _playerSpawnPoint: {x: 0, y: 0.25, z: 0}

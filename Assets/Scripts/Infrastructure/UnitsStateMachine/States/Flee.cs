@@ -15,9 +15,9 @@ public class Flee : State
     private readonly AIDestinationSetter _aiDestinationSetter;
     private readonly IAIMovable _movable;
 
-    public override void Enter()
+    public override void Tick()
     {
-        Debug.Log("Зашло");
+        Debug.Log("Бегу");
         _movable.MoveAwayFromAttacker(_aiDestinationSetter, _unitDamageHandler.Attacker.transform);
     }
 }

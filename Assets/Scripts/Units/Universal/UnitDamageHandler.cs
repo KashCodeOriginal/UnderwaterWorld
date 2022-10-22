@@ -10,10 +10,19 @@ public class UnitDamageHandler : MonoBehaviour, IDamagable
 
     private IHealth _unitHealth;
 
+    private IAIMovable _enemyMovement;
+
 
     private void Start()
     {
         _unitHealth = GetComponent<IHealth>();
+
+        if (TryGetComponent(out IAIMovable aiMovable))
+        {
+            _enemyMovement = aiMovable;
+            
+            _enemyMovement.IsUnitEscaped += UnitEscaped;
+        }
     }
 
     public void TryApplyDamage(int damage, GameObject attacker)
@@ -27,5 +36,18 @@ public class UnitDamageHandler : MonoBehaviour, IDamagable
         ApplyDamage?.Invoke(damage);
 
         Attacker = attacker;
+    }
+
+    private void UnitEscaped()
+    {
+        Attacker = null;
+    }
+
+    private void OnDisable()
+    {
+        if (_enemyMovement != null)
+        {
+            _enemyMovement.IsUnitEscaped -= UnitEscaped;
+        }
     }
 }

@@ -1,9 +1,12 @@
 using Pathfinding;
 using UnityEngine;
+using UnityEngine.Events;
 using Random = UnityEngine.Random;
 
 public class EnemyMovement : MonoBehaviour, IAIMovable
 {
+    public event UnityAction IsUnitEscaped;
+    
     [SerializeField] private float _minWalkableDistance;
     [SerializeField] private float _maxWalkableDistance;
     
@@ -11,6 +14,8 @@ public class EnemyMovement : MonoBehaviour, IAIMovable
 
     private Vector3 _startPosition;
     private Vector3 _roamPosition;
+    
+    private Vector3 _movingAwayPosition = Vector3.zero;
 
     private GameObject _randomPositionTarget;
 
@@ -18,20 +23,11 @@ public class EnemyMovement : MonoBehaviour, IAIMovable
 
     public float Speed { get; private set; }
 
-    public float MinWalkableDistance
-    {
-        get => _minWalkableDistance;
-    }
+    public float MinWalkableDistance => _minWalkableDistance;
 
-    public float MaxWalkableDistance
-    {
-        get => _maxWalkableDistance;
-    }
+    public float MaxWalkableDistance => _maxWalkableDistance;
 
-    public float ReachedPointDistance
-    {
-        get => _reachedPointDistance;
-    }
+    public float ReachedPointDistance => _reachedPointDistance;
 
     private void Start()
     {
@@ -64,10 +60,19 @@ public class EnemyMovement : MonoBehaviour, IAIMovable
     
     public void MoveAwayFromAttacker(AIDestinationSetter aiDestinationSetter, Transform attackerPosition)
     {
-        var position = GenerateRoamingPosition(attackerPosition);
+        if (_movingAwayPosition == Vector3.zero)
+        {
+            _movingAwayPosition = GenerateRoamingPosition(attackerPosition);
+        }
 
-        _randomPositionTarget.transform.position = position;
-        
+        _randomPositionTarget.transform.position = _movingAwayPosition;
+
+        if (Vector3.Distance(gameObject.transform.position,  _randomPositionTarget.transform.position) < _reachedPointDistance)
+        {
+            _movingAwayPosition = Vector3.zero;
+            IsUnitEscaped?.Invoke();
+        }
+
         aiDestinationSetter.target = _randomPositionTarget.transform;
     }
 
@@ -107,6 +112,8 @@ public class EnemyMovement : MonoBehaviour, IAIMovable
 
     private Vector3 GenerateDefinedDirection(Transform attackerPosition)
     {
-        return -attackerPosition.transform.position.normalized;
+        var position = attackerPosition.position;
+        
+        return new Vector3(-position.x, 0, transform.position.z).normalized;
     }
 }
