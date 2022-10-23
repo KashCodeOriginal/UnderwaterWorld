@@ -34,13 +34,14 @@ public class Enemy : MonoBehaviour
         var findFood = new FindFood(this, _eatable, _aiDestinationSetter);
         var flee = new Flee(_unitDamageHandler, _aiDestinationSetter, _movable);
 
-        AddTransition(idle, findFood, NeedFood);
+        AddTransition(idle, findFood, NeedFindFood);
         AddTransition(findFood, idle, CanIdle);
         AddTransition(flee, idle, Escaped);
         
         _stateMachine.AddAnyTransition(flee, Flee);
+        //_stateMachine.AddAnyTransition();
 
-        bool NeedFood() => _unitHunger.HungerPoints <= 60;  
+        bool NeedFindFood() => _unitHunger.HungerPoints <= 60;  
         bool CanIdle() => _unitHunger.HungerPoints > 60 || _eatable.CurrentFoodTarget == null;
         bool Flee() => _unitDamageHandler.Attacker != null;
         bool Escaped() => _unitDamageHandler.Attacker == null;

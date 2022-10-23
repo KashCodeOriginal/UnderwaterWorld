@@ -222,8 +222,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _minWalkableDistance: 5
-  _maxWalkableDistance: 30
+  _maxWalkableDistance: 10
   _reachedPointDistance: 1
+  _safetyDistanceFromAttacker: 10
 --- !u!114 &5051324992747015621
 MonoBehaviour:
   m_ObjectHideFlags: 0

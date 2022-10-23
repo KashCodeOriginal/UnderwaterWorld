@@ -17,7 +17,6 @@ public class Flee : State
 
     public override void Tick()
     {
-        Debug.Log("Бегу");
         _movable.MoveAwayFromAttacker(_aiDestinationSetter, _unitDamageHandler.Attacker.transform);
     }
 }

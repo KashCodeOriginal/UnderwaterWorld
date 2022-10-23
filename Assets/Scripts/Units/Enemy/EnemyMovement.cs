@@ -12,6 +12,8 @@ public class EnemyMovement : MonoBehaviour, IAIMovable
     
     [SerializeField] private float _reachedPointDistance;
 
+    [SerializeField] private float _safetyDistanceFromAttacker;
+
     private Vector3 _startPosition;
     private Vector3 _roamPosition;
     
@@ -60,20 +62,27 @@ public class EnemyMovement : MonoBehaviour, IAIMovable
     
     public void MoveAwayFromAttacker(AIDestinationSetter aiDestinationSetter, Transform attackerPosition)
     {
-        if (_movingAwayPosition == Vector3.zero)
+        if (Vector3.Distance(gameObject.transform.position, attackerPosition.position) < _safetyDistanceFromAttacker)
         {
-            _movingAwayPosition = GenerateRoamingPosition(attackerPosition);
+            if (_movingAwayPosition == Vector3.zero)
+            {
+                _movingAwayPosition = GenerateRoamingPosition(attackerPosition);
+            }
+            
+            _randomPositionTarget.transform.position = new Vector3(_movingAwayPosition.x, 0, _movingAwayPosition.z);
+            
+            if (Vector3.Distance(gameObject.transform.position,  _randomPositionTarget.transform.position) < _reachedPointDistance)
+            {
+                _movingAwayPosition = GenerateRoamingPosition(attackerPosition);
+            }
+
+            aiDestinationSetter.target = _randomPositionTarget.transform;
+            
+            return;
         }
-
-        _randomPositionTarget.transform.position = _movingAwayPosition;
-
-        if (Vector3.Distance(gameObject.transform.position,  _randomPositionTarget.transform.position) < _reachedPointDistance)
-        {
-            _movingAwayPosition = Vector3.zero;
-            IsUnitEscaped?.Invoke();
-        }
-
-        aiDestinationSetter.target = _randomPositionTarget.transform;
+        
+        _movingAwayPosition = Vector3.zero;
+        IsUnitEscaped?.Invoke();
     }
 
     public void Modify(float speed)
@@ -110,10 +119,9 @@ public class EnemyMovement : MonoBehaviour, IAIMovable
         return new Vector3(Random.Range(-1f, 1f),0 ,Random.Range(-1f, 1f)).normalized;
     }
 
-    private Vector3 GenerateDefinedDirection(Transform attackerPosition)
+    private Vector3 GenerateDefinedDirection(Transform attacker)
     {
-        var position = attackerPosition.position;
-        
-        return new Vector3(-position.x, 0, transform.position.z).normalized;
+        var direction = gameObject.transform.position - attacker.position;
+        return direction.normalized;
     }
 }

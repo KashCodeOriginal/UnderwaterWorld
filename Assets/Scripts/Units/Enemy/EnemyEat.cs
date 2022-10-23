@@ -49,11 +49,16 @@ public class EnemyEat : MonoBehaviour, IAIEatable
         
         var colliders = Physics.OverlapSphere(enemyPosition, 15);
 
-        var closestCollider = FindClosestCollider(colliders, enemyPosition);
+        var closestFoodCollider = FindClosestFoodCollider(colliders, enemyPosition);
 
-        if (closestCollider != null)
+        if (closestFoodCollider != null)
         {
-            FindClosestFood(closestCollider, aiDestinationSetter);
+            FindClosestFood(closestFoodCollider, aiDestinationSetter);
+        }
+        else if (closestFoodCollider == null && _foodChoose == FoodChooseBehavior.Omnivorous ||
+                 _foodChoose == FoodChooseBehavior.Сarnivorous)
+        {
+            
         }
     }
 
@@ -104,7 +109,7 @@ public class EnemyEat : MonoBehaviour, IAIEatable
         }
     }
 
-    private Collider FindClosestCollider(Collider[] colliders, Vector3 position)
+    private Collider FindClosestFoodCollider(Collider[] colliders, Vector3 position)
     {
         Collider minDistanceCollider = null;
         var minDistance = Mathf.Infinity;
