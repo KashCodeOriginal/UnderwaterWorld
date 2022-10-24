@@ -14,13 +14,15 @@ public class EnemyEat : MonoBehaviour, IAIEatable
 
     private IStatsService _statsService;
 
-    private Transform _currentFoodTarget;
+    private Transform _currentTarget;
 
     private IFoodRelationService _foodRelationService;
 
-    public Transform CurrentFoodTarget
+    private INearbyCollidersFind _nearbyCollidersFind;
+
+    public Transform CurrentTarget
     {
-        get => _currentFoodTarget;
+        get => _currentTarget;
     }
 
     public FoodChooseBehavior FoodChoose
@@ -32,6 +34,7 @@ public class EnemyEat : MonoBehaviour, IAIEatable
     {
         _enemyHunger = GetComponent<IHunger>();
         _enemyTriggers = GetComponent<UnitTriggers>();
+        _nearbyCollidersFind = GetComponent<INearbyCollidersFind>();
 
         _foodRelationService = _enemyTriggers._foodRelationService;
         
@@ -40,25 +43,34 @@ public class EnemyEat : MonoBehaviour, IAIEatable
 
     public void TryFindClosestFood(AIDestinationSetter aiDestinationSetter)
     {
-        if (aiDestinationSetter.target == _currentFoodTarget)
+        if (aiDestinationSetter.target == _currentTarget)
         {
             return;
         }
-        
-        var enemyPosition = gameObject.transform.position;
-        
-        var colliders = Physics.OverlapSphere(enemyPosition, 15);
 
-        var closestFoodCollider = FindClosestFoodCollider(colliders, enemyPosition);
+        var closestFoodCollider = _nearbyCollidersFind.FindClosestFoodCollider();
 
         if (closestFoodCollider != null)
         {
-            FindClosestFood(closestFoodCollider, aiDestinationSetter);
-        }
-        else if (closestFoodCollider == null && _foodChoose == FoodChooseBehavior.Omnivorous ||
-                 _foodChoose == FoodChooseBehavior.Сarnivorous)
-        {
+            _currentTarget = _nearbyCollidersFind.FindClosestEatableFood(closestFoodCollider, _foodRelationService);
             
+            if (_currentTarget != null)
+            {
+                aiDestinationSetter.target = _currentTarget;
+            }
+        }
+        else
+        {
+            if (_foodChoose != FoodChooseBehavior.Herbivorous)
+            { 
+                var closestUnitCollider = _nearbyCollidersFind.FindClosestUnitCollider();
+
+                if (closestUnitCollider != null)
+                {
+                    _currentTarget = closestUnitCollider.transform;
+                    aiDestinationSetter.target = _currentTarget;
+                }
+            }
         }
     }
 
@@ -84,51 +96,6 @@ public class EnemyEat : MonoBehaviour, IAIEatable
 
             IncreaseHunger?.Invoke(maxAddableValue);
         }
-    }
-
-    private void FindClosestFood(Collider closestCollider, AIDestinationSetter aiDestinationSetter)
-    {
-        if (gameObject.TryGetComponent(out IEatable eatable))
-        {
-            var foodTypes = _foodRelationService.GetEatableFoodType(eatable.FoodChoose);
-
-            var food = closestCollider.GetComponent<IFood>();
-
-            foreach (var foodType in foodTypes)
-            {
-                if (foodType == food.FoodType)
-                {
-                    _currentFoodTarget = closestCollider.transform;
-                }
-                        
-                if (_currentFoodTarget != null)
-                {
-                    aiDestinationSetter.target = _currentFoodTarget;
-                }
-            }
-        }
-    }
-
-    private Collider FindClosestFoodCollider(Collider[] colliders, Vector3 position)
-    {
-        Collider minDistanceCollider = null;
-        var minDistance = Mathf.Infinity;
-
-        foreach (var collider in colliders)
-        {
-            if (collider.TryGetComponent(out IFood _))
-            {
-                float distance = Vector3.Distance(position, collider.transform.position);
-
-                if (distance < minDistance)
-                {
-                    minDistanceCollider = collider;
-                    minDistance = distance;
-                }
-            }
-        }
-
-        return minDistanceCollider;
     }
 
     private void OnDisable()

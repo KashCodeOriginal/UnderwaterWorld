@@ -47,7 +47,6 @@ public class EnemyMovement : MonoBehaviour, IAIMovable
         _gameSettings = gameSettings;
     }
 
-
     public void MoveToRandomPoint(AIDestinationSetter aiDestinationSetter)
     {
         _randomPositionTarget.transform.position = _roamPosition;
@@ -108,9 +107,8 @@ public class EnemyMovement : MonoBehaviour, IAIMovable
 
         while (position.x >= _gameSettings.MapMaxX || position.x <= _gameSettings.MapMinX || position.z >= _gameSettings.MapMaxZ || position.z <= _gameSettings.MapMinZ)
         {
-            position = _startPosition + GenerateDefinedDirection(attackerPosition) * Random.Range(_minWalkableDistance, _maxWalkableDistance);
+            position = _startPosition + GenerateRandomDirection() * Random.Range(_minWalkableDistance, _maxWalkableDistance);
         }
-
         return position;
     }
     
