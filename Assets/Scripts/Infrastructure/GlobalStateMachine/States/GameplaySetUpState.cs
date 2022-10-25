@@ -35,10 +35,10 @@ public class GameplaySetUpState : State<GameInstance>
         var cameraInstance = _abstractFactory.CreateObject(camera, Vector3.zero);
         
         var foodSpawner = Object.FindObjectOfType<FoodSpawner>();
-        foodSpawner.CreateFood();
+        foodSpawner.CreateFood(_gameSettings.FoodsAmount, Vector3.zero, true);
 
         var enemySpawner = Object.FindObjectOfType<EnemySpawner>();
-        enemySpawner.CreateEnemy();
+        enemySpawner.CreateEnemy(_gameSettings.UnitsAmount, Vector3.zero, true);
 
         if(_gameplayScreen.TryGetComponent(out GameplayScreen gameplayScreen))
         {

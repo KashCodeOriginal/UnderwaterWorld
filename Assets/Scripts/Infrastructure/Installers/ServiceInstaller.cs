@@ -1,3 +1,4 @@
+using System;
 using Zenject;
 using UnityEngine;
 
@@ -7,11 +8,13 @@ public class ServiceInstaller : MonoInstaller
     
     public override void InstallBindings()
     {
+        BindWatchers();
         BindFoodFactory();
         BindUIFactory();
         BindAbstractFactory();
         BindEnemyFactory();
         BindAssetsAddressable();
+        BindFoodRelationService();
         BindGameSettings();
     }
     
@@ -37,11 +40,24 @@ public class ServiceInstaller : MonoInstaller
 
     private void BindEnemyFactory()
     {
-        Container.BindInterfacesTo<EnemyFactory>().AsSingle();
+        Container.BindInterfacesTo<UnitFactory>().AsSingle();
     }
-
+    
+    private void BindFoodRelationService()
+    {
+        Container.BindInterfacesTo<FoodRelationService>().AsSingle();
+    }
+    
     private void BindGameSettings()
     {
         Container.Bind<GameSettings>().FromInstance(_gameSettings).AsSingle();
     }
+
+    private void BindWatchers()
+    {
+        Container.BindInterfacesTo<UnitsUnitsDeathWatch>().AsSingle();
+
+        Container.BindInterfacesTo<FoodsFoodEatWatch>().AsSingle();
+    }
+    
 }

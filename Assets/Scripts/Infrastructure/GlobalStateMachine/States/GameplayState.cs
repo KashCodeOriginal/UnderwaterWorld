@@ -32,7 +32,7 @@ public class GameplayState : StateThreeParams<GameInstance, GameplayScreen, Game
         _uiFactory.DestroyGameplayScreen();
     }
 
-    private void OnDied()
+    private void OnDied(IDamagable damagable)
     {
         Context.StateMachine.SwitchState<PlayerDiedState>();
         _cameraInstance.GetComponentInChildren<CameraFollowing>().enabled = false;

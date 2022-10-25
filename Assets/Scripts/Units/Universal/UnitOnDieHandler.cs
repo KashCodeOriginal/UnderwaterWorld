@@ -2,14 +2,13 @@ using UnityEngine;
 
 public class UnitOnDieHandler : MonoBehaviour
 {
-    private IDamagable _playerDamageHandler;
+    private IDamagable _unitDamageHandler;
     private IFactory _factory;
 
     private void Start()
     {
-        _playerDamageHandler = GetComponent<IDamagable>();
-        
-        _playerDamageHandler.OnDied += OnDie;
+        _unitDamageHandler = GetComponent<IDamagable>();
+        _unitDamageHandler.OnDied += OnDie;
     }
 
     public void Construct(IFactory factory)
@@ -17,7 +16,7 @@ public class UnitOnDieHandler : MonoBehaviour
         _factory = factory;
     }
 
-    private void OnDie()
+    private void OnDie(IDamagable damagable)
     {
         DestroyInstance();
     }
@@ -29,6 +28,6 @@ public class UnitOnDieHandler : MonoBehaviour
 
     private void OnDisable()
     {
-        _playerDamageHandler.OnDied -= OnDie;
+        _unitDamageHandler.OnDied -= OnDie;
     }
 }

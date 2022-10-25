@@ -2,11 +2,11 @@ using System;
 using UnityEngine;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using UnityEngine.SceneManagement;
 using Zenject;
 using Object = UnityEngine.Object;
+using UnityEngine.SceneManagement;
 
-public class EnemyFactory : IEnemyFactory
+public class UnitFactory : IUnitFactory
 {
     public event Action OnInstancesListChanged;
 
@@ -20,10 +20,14 @@ public class EnemyFactory : IEnemyFactory
     private readonly DiContainer _container;
 
     private readonly IAssetsAddressableService _assetsAddressableService;
-    public EnemyFactory(DiContainer container, IAssetsAddressableService assetsAddressableService)
+
+    private readonly IUnitsDeathObservable _unitsDeathObservable;
+
+    public UnitFactory(DiContainer container, IAssetsAddressableService assetsAddressableService, IUnitsDeathObservable unitsDeathObservable)
     {
         _container = container;
         _assetsAddressableService = assetsAddressableService;
+        _unitsDeathObservable = unitsDeathObservable;
     }
 
     public async Task<GameObject> CreateObject(Vector3 position, params EnemyDecorator[] decorators)
@@ -43,6 +47,11 @@ public class EnemyFactory : IEnemyFactory
         SetUp(enemyInstance, position, enemyStats);
         
         _instances.Add(enemyInstance);
+
+        if(enemyInstance.TryGetComponent(out IDamagable damagable))
+        {
+            _unitsDeathObservable.Register(damagable);
+        }
 
         return enemyInstance;
     }

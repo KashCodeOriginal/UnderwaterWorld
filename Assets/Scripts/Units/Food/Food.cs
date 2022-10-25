@@ -1,12 +1,16 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Food : MonoBehaviour, IFood
 {
+    public event UnityAction<IFood> WasEaten;
+    
     [SerializeField] private int _recoveryValue;
     
     [SerializeField] private FoodTypeBehavior _foodType;
 
     private IFoodFactory _foodFactory;
+
 
     public int RecoveryValue
     {
@@ -31,6 +35,7 @@ public class Food : MonoBehaviour, IFood
 
     public void DestroyOnEat()
     {
+        WasEaten?.Invoke(this);
         _foodFactory.DestroyInstance(gameObject);
     }
 }

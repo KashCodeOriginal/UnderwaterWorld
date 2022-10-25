@@ -16,4 +16,6 @@ MonoBehaviour:
   _mapMaxXPosition: 40
   _mapMinZPosition: -40
   _mapMaxZPosition: 40
-  _playerSpawnPoint: {x: 0, y: 0.25, z: 0}
+  _playerSpawnPoint: {x: 0, y: 1, z: 0}
+  _foodsAmount: 0
+  _unitsAmount: 1

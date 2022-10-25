@@ -7,23 +7,26 @@ using Object = UnityEngine.Object;
 
 public class FoodFactory : IFoodFactory
 {
-    public FoodFactory(DiContainer container, IAssetsAddressableService assetsAddressableService)
+    private readonly DiContainer _container;
+
+    private readonly IAssetsAddressableService _assetsAddressableService;
+
+    private readonly IFoodEatObservable _foodEatObservable;
+
+    private List<GameObject> _instances = new List<GameObject>();
+
+    public FoodFactory(DiContainer container, IAssetsAddressableService assetsAddressableService, IFoodEatObservable foodEatObservable)
     {
         _container = container;
         _assetsAddressableService = assetsAddressableService;
+        _foodEatObservable = foodEatObservable;
     }
 
-    public event Action OnInstancesListChanged;
 
     public IReadOnlyList<GameObject> Instances
     {
         get => _instances;
     }
-
-    private readonly DiContainer _container;
-    private readonly IAssetsAddressableService _assetsAddressableService;
-
-    private List<GameObject> _instances = new List<GameObject>();
 
     public async void CreateObject(Vector3 position, params FoodDecorator[] decorators)
     {
@@ -52,8 +55,6 @@ public class FoodFactory : IFoodFactory
         }
         
         Object.Destroy(instance);
-        
-        //OnInstancesListChanged?.Invoke();
     }
 
     public void DestroyAllInstances()
@@ -105,6 +106,8 @@ public class FoodFactory : IFoodFactory
         {
             food.Modify(foodStats.RecoveryValue, foodStats.FoodType);
             food.Construct(this);
+
+            _foodEatObservable.Register(food);
         }
 
         if (foodInstance.TryGetComponent(out FoodMeshHandler meshHandler))
@@ -116,5 +119,10 @@ public class FoodFactory : IFoodFactory
     private void ToScene(GameObject target)
     {
         SceneManager.MoveGameObjectToScene(target, SceneManager.GetActiveScene());
+    }
+
+    private void Ddf()
+    {
+        
     }
 }

@@ -3,8 +3,9 @@ using UnityEngine.Events;
 
 public class UnitDamageHandler : MonoBehaviour, IDamagable
 {
+    public GameObject GameObject => gameObject;
     public event UnityAction<int> ApplyDamage;
-    public event UnityAction OnDied;
+    public event UnityAction<IDamagable> OnDied;
     
     public GameObject Attacker { get; private set; }
 
@@ -29,7 +30,7 @@ public class UnitDamageHandler : MonoBehaviour, IDamagable
     {
         if (_unitHealth.HealthPoints - damage <= 0)
         {
-            OnDied?.Invoke();
+            OnDied?.Invoke(this);
             return;
         }
         

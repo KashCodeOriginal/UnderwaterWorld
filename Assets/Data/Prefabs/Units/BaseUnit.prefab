@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3102297242546343238}
   - component: {fileID: 7515141676248263047}
   m_Layer: 6
-  m_Name: BaseEnemyModel
+  m_Name: UnitModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -111,7 +111,7 @@ GameObject:
   - component: {fileID: 4991378816616031339}
   - component: {fileID: 8836106067611004329}
   m_Layer: 6
-  m_Name: BaseEnemy
+  m_Name: BaseUnit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
