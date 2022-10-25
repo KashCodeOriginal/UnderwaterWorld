@@ -23,6 +23,8 @@ public class EnemyMovement : MonoBehaviour, IAIMovable
 
     private GameSettings _gameSettings;
 
+    private AIPath _aiPath;
+
     public float Speed { get; private set; }
 
     public float MinWalkableDistance => _minWalkableDistance;
@@ -40,6 +42,10 @@ public class EnemyMovement : MonoBehaviour, IAIMovable
         _randomPositionTarget = new GameObject();
         _randomPositionTarget.transform.SetParent(gameObject.transform);
         _randomPositionTarget.name = "Target";
+
+        _aiPath = GetComponent<AIPath>();
+
+        _aiPath.maxSpeed = Speed;
     }
 
     public void Construct(GameSettings gameSettings)

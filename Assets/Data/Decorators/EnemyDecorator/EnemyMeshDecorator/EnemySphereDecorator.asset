@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EnemySphereDecorator
   m_EditorClassIdentifier: 
   _health: 5
-  _damage: 3
-  _speed: 5
+  _damage: 1
+  _speed: 0.6
   _mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
   _foodChoose: 1

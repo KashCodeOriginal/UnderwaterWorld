@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EnemyCubeDecorator
   m_EditorClassIdentifier: 
   _health: 10
-  _damage: 5
-  _speed: 4
+  _damage: 3
+  _speed: 0.3
   _mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
   _foodChoose: 0

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: EnemyLittleDecorator
   m_EditorClassIdentifier: 
   _health: -5
-  _damage: 3
-  _speed: 5
+  _damage: 1
+  _speed: 0.5
   _size: 0.3

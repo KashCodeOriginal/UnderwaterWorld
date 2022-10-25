@@ -103,13 +103,15 @@ GameObject:
   - component: {fileID: 236015633372893967}
   - component: {fileID: 6074395114394522698}
   - component: {fileID: 5294532557033017579}
-  - component: {fileID: 7700064066079613848}
+  - component: {fileID: -3442510718148300234}
   - component: {fileID: 7995770315209918558}
   - component: {fileID: 3683482188725014916}
   - component: {fileID: -8613702443402859396}
   - component: {fileID: 9098572231584507482}
   - component: {fileID: 4991378816616031339}
   - component: {fileID: 8836106067611004329}
+  - component: {fileID: -742099124602626239}
+  - component: {fileID: 2394011230901687295}
   m_Layer: 6
   m_Name: BaseUnit
   m_TagString: Untagged
@@ -278,11 +280,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  drawGizmos: 1
+  drawGizmos: 0
   detailedGizmos: 0
   startEndModifier:
     addPoints: 0
-    exactStartPoint: 3
+    exactStartPoint: 1
     exactEndPoint: 3
     useRaycasting: 0
     mask:
@@ -293,7 +295,7 @@ MonoBehaviour:
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask:
     value: -1
---- !u!114 &7700064066079613848
+--- !u!114 &-3442510718148300234
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -302,26 +304,39 @@ MonoBehaviour:
   m_GameObject: {fileID: 2502481529657712774}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 847a14d4dc9cc43679ab34fc78e0182f, type: 3}
+  m_Script: {fileID: 11500000, guid: f6eb1402c17e84a9282a7f0f62eb584f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  version: 4
-  autoRepath:
-    mode: 1
-    interval: 0.2
-    sensitivity: 10
-    maximumInterval: 1
-    visualizeSensitivity: 0
+  version: 5
+  radius: 0.5
+  height: 1
   canMove: 1
-  speed: 3
-  orientation: 0
-  enableRotation: 1
-  rotationSpeed: 10
-  interpolatePathSwitches: 1
-  switchPathInterpolationSpeed: 5
-  targetCompatibility: {fileID: 0}
+  maxSpeed: 3
+  gravity: {x: NaN, y: NaN, z: NaN}
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  centerOffsetCompatibility: NaN
   repathRateCompatibility: NaN
   canSearchCompability: 0
+  orientation: 0
+  enableRotation: 1
+  autoRepath:
+    mode: 1
+    interval: 0.5
+    sensitivity: 10
+    maximumInterval: 2
+    visualizeSensitivity: 0
+  targetCompatibility: {fileID: 0}
+  maxAcceleration: -2.5
+  rotationSpeed: 360
+  slowdownDistance: 0.1
+  pickNextWaypointDist: 0.2
+  endReachedDistance: 0.2
+  alwaysDrawGizmos: 0
+  slowWhenNotFacingTarget: 1
+  whenCloseToDestination: 0
+  constrainInsideGraph: 1
 --- !u!114 &7995770315209918558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -335,14 +350,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  smoothType: 0
+  smoothType: 1
   subdivisions: 2
   iterations: 2
   strength: 0.5
   uniformLength: 1
   maxSegmentLength: 1
   bezierTangentLength: 0.4
-  offset: 0.2
+  offset: 2
   factor: 0.1
 --- !u!114 &3683482188725014916
 MonoBehaviour:
@@ -411,6 +426,48 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!114 &-742099124602626239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2502481529657712774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 560112f876f5746c780eca0d404e7139, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 2
+  radiusBackingField: 0.5
+  heightBackingField: 2
+  centerBackingField: 1
+  locked: 0
+  lockWhenNotMoving: 0
+  agentTimeHorizon: 2
+  obstacleTimeHorizon: 2
+  maxNeighbours: 10
+  layer: 1
+  collidesWith: -5
+  wallAvoidForce: 1
+  wallAvoidFalloff: 1
+  priority: 0.5
+  debug: 0
+--- !u!114 &2394011230901687295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2502481529657712774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77f586f285b3847808d79083bd19ef1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  unwrap: 1
+  splitAtEveryPortal: 0
 --- !u!1001 &7650623183954283793
 PrefabInstance:
   m_ObjectHideFlags: 0
