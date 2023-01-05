@@ -120,9 +120,4 @@ public class FoodFactory : IFoodFactory
     {
         SceneManager.MoveGameObjectToScene(target, SceneManager.GetActiveScene());
     }
-
-    private void Ddf()
-    {
-        
-    }
 }

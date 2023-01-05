@@ -106,13 +106,13 @@ public class UnitFactory : IUnitFactory
         return foodInstance;
     }
 
-    private void DecorateStats(ref EnemyStats enemyStats, params EnemyDecorator[] decorators)
-    {
-        for (int i = 0; i < decorators.Length; i++)
+        private void DecorateStats(ref EnemyStats enemyStats, params EnemyDecorator[] decorators)
         {
-            decorators[i].Decorate(ref enemyStats);
+            for (int i = 0; i < decorators.Length; i++)
+            {
+                decorators[i].Decorate(ref enemyStats);
+            }
         }
-    }
 
     private void SetUp(GameObject enemyInstance, Vector3 position, EnemyStats enemyStats)
     {
