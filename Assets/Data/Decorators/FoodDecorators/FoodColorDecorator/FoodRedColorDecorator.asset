@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36c98ec48fbbc0a44bc064e3e6997698, type: 3}
   m_Name: FoodRedColorDecorator
   m_EditorClassIdentifier: 
-  _color: {r: 1, g: 0, b: 0, a: 1}
+  _color: {r: 0.4433962, g: 0.2191883, b: 0.2191883, a: 1}
   _recoveryValue: 3

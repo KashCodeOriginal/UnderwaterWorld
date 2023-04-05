@@ -15,5 +15,5 @@ MonoBehaviour:
   _health: 5
   _damage: 1
   _speed: 0.6
-  _mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  _mesh: {fileID: -2432090755550338912, guid: ab841cfd8e8b90545b67b78ebd2d976f, type: 3}
   _foodChoose: 1

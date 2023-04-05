@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e13f8b841e26dd4bb6c94df6c04afa7, type: 3}
   m_Name: FoodSphereDecorator
   m_EditorClassIdentifier: 
-  _mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
-  _recoveryValue: -1
+  _mesh: {fileID: -2432090755550338912, guid: 05a0b4006970dfc468f80e273006f75b, type: 3}
+  _recoveryValue: 1
   _foodType: 1
